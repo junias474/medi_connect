@@ -249,7 +249,7 @@
                 </div>
                 
                 <div class="section-cta">
-                    <a href="services.php" class="btn-link">
+                    <a href="pages/services.php" class="btn-link">
                         Découvrir tous nos services
                         <i class="bi bi-arrow-right"></i>
                     </a>

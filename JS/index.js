@@ -493,3 +493,5 @@ window.mediConnectUtils = {
     showNotification: showNotification,
     animateCounter: animateCounter
 };
+
+console.log('Medi-Connect - Application initialisée avec succès ✓');
