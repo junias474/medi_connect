@@ -1,8 +1,12 @@
 <?php
 /**
- * Page de connexion
+ * Page de connexion avec débogage
  * Application de Consultation Médicale
  */
+
+// ACTIVER L'AFFICHAGE DES ERREURS POUR LE DÉBOGAGE
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 require_once 'config.php';
 
@@ -13,6 +17,7 @@ if (isLoggedIn()) {
 
 $error = '';
 $success = '';
+$debug_info = ''; // Pour afficher les informations de débogage
 
 // Traitement du formulaire de connexion
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -25,6 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $db = Database::getInstance()->getConnection();
             
+            // Test de connexion
+            $debug_info .= "✓ Connexion à la base de données réussie<br>";
+            
             // Rechercher l'utilisateur par email ou téléphone
             $stmt = $db->prepare("
                 SELECT id, nom, prenom, email, telephone, mot_de_passe, role, statut, ville
@@ -36,16 +44,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([':identifiant' => $identifiant]);
             $user = $stmt->fetch();
             
+            $debug_info .= "✓ Requête SQL exécutée<br>";
+            $debug_info .= "Identifiant recherché : " . htmlspecialchars($identifiant) . "<br>";
+            
             if ($user) {
+                $debug_info .= "✓ Utilisateur trouvé : " . htmlspecialchars($user['email']) . "<br>";
+                $debug_info .= "Rôle : " . htmlspecialchars($user['role']) . "<br>";
+                $debug_info .= "Statut : " . htmlspecialchars($user['statut']) . "<br>";
+                
                 // Vérifier le statut du compte
                 if ($user['statut'] !== 'actif') {
                     $error = "Votre compte est " . $user['statut'] . ". Veuillez contacter l'administrateur.";
                 } 
                 // Vérifier le mot de passe
                 elseif (password_verify($mot_de_passe, $user['mot_de_passe'])) {
+                    $debug_info .= "✓ Mot de passe correct<br>";
+                    
                     // Mettre à jour la dernière connexion
-                    $updateStmt = $db->prepare("UPDATE utilisateurs SET derniere_connexion = NOW() WHERE id = :id");
-                    $updateStmt->execute([':id' => $user['id']]);
+                    try {
+                        $updateStmt = $db->prepare("UPDATE utilisateurs SET derniere_connexion = NOW() WHERE id = :id");
+                        $updateStmt->execute([':id' => $user['id']]);
+                        $debug_info .= "✓ Dernière connexion mise à jour<br>";
+                    } catch(PDOException $e) {
+                        $debug_info .= "⚠ Erreur mise à jour connexion : " . $e->getMessage() . "<br>";
+                    }
                     
                     // Enregistrer les informations de session
                     $_SESSION['user_id'] = $user['id'];
@@ -54,47 +76,86 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['user_prenom'] = $user['prenom'];
                     $_SESSION['user_email'] = $user['email'];
                     
+                    $debug_info .= "✓ Variables de session créées<br>";
+                    
                     // Récupérer l'ID spécifique selon le rôle
-                    if ($user['role'] === 'patient') {
-                        $roleStmt = $db->prepare("SELECT id FROM patients WHERE utilisateur_id = :user_id");
-                        $roleStmt->execute([':user_id' => $user['id']]);
-                        $roleData = $roleStmt->fetch();
-                        $_SESSION['patient_id'] = $roleData['id'];
-                    } elseif ($user['role'] === 'medecin') {
-                        $roleStmt = $db->prepare("SELECT id FROM medecins WHERE utilisateur_id = :user_id");
-                        $roleStmt->execute([':user_id' => $user['id']]);
-                        $roleData = $roleStmt->fetch();
-                        $_SESSION['medecin_id'] = $roleData['id'];
-                    } elseif ($user['role'] === 'administrateur') {
-                        $roleStmt = $db->prepare("SELECT id FROM administrateurs WHERE utilisateur_id = :user_id");
-                        $roleStmt->execute([':user_id' => $user['id']]);
-                        $roleData = $roleStmt->fetch();
-                        $_SESSION['admin_id'] = $roleData['id'];
+                    try {
+                        if ($user['role'] === 'patient') {
+                            $roleStmt = $db->prepare("SELECT id FROM patients WHERE utilisateur_id = :user_id");
+                            $roleStmt->execute([':user_id' => $user['id']]);
+                            $roleData = $roleStmt->fetch();
+                            if ($roleData) {
+                                $_SESSION['patient_id'] = $roleData['id'];
+                                $debug_info .= "✓ Patient ID récupéré : " . $roleData['id'] . "<br>";
+                            } else {
+                                $debug_info .= "⚠ Aucun profil patient trouvé pour cet utilisateur<br>";
+                            }
+                        } elseif ($user['role'] === 'medecin') {
+                            $roleStmt = $db->prepare("SELECT id FROM medecins WHERE utilisateur_id = :user_id");
+                            $roleStmt->execute([':user_id' => $user['id']]);
+                            $roleData = $roleStmt->fetch();
+                            if ($roleData) {
+                                $_SESSION['medecin_id'] = $roleData['id'];
+                                $debug_info .= "✓ Médecin ID récupéré : " . $roleData['id'] . "<br>";
+                            } else {
+                                $debug_info .= "⚠ Aucun profil médecin trouvé pour cet utilisateur<br>";
+                            }
+                        } elseif ($user['role'] === 'administrateur') {
+                            $roleStmt = $db->prepare("SELECT id FROM administrateurs WHERE utilisateur_id = :user_id");
+                            $roleStmt->execute([':user_id' => $user['id']]);
+                            $roleData = $roleStmt->fetch();
+                            if ($roleData) {
+                                $_SESSION['admin_id'] = $roleData['id'];
+                                $debug_info .= "✓ Admin ID récupéré : " . $roleData['id'] . "<br>";
+                            } else {
+                                $debug_info .= "⚠ Aucun profil admin trouvé pour cet utilisateur<br>";
+                            }
+                        }
+                    } catch(PDOException $e) {
+                        $debug_info .= "⚠ Erreur récupération ID du rôle : " . $e->getMessage() . "<br>";
                     }
                     
                     // Enregistrer l'activité
-                    $logStmt = $db->prepare("
-                        INSERT INTO logs_activite (utilisateur_id, action, description, adresse_ip, user_agent)
-                        VALUES (:user_id, 'connexion', 'Connexion réussie', :ip, :user_agent)
-                    ");
-                    $logStmt->execute([
-                        ':user_id' => $user['id'],
-                        ':ip' => $_SERVER['REMOTE_ADDR'] ?? 'Inconnue',
-                        ':user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'Inconnu'
-                    ]);
+                    try {
+                        $logStmt = $db->prepare("
+                            INSERT INTO logs_activite (utilisateur_id, action, description, adresse_ip, user_agent)
+                            VALUES (:user_id, 'connexion', 'Connexion réussie', :ip, :user_agent)
+                        ");
+                        $logStmt->execute([
+                            ':user_id' => $user['id'],
+                            ':ip' => $_SERVER['REMOTE_ADDR'] ?? 'Inconnue',
+                            ':user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'Inconnu'
+                        ]);
+                        $debug_info .= "✓ Log d'activité enregistré<br>";
+                    } catch(PDOException $e) {
+                        $debug_info .= "⚠ Erreur enregistrement log : " . $e->getMessage() . "<br>";
+                    }
                     
                     // Rediriger vers le dashboard approprié
-                    redirectToDashboard($user['role']);
+                    $debug_info .= "✓ Redirection vers dashboard " . $user['role'] . "<br>";
+                    
+                    // POUR LE MOMENT, ON AFFICHE LE DEBUG AU LIEU DE REDIRIGER
+                    // Décommenter la ligne suivante quand tout fonctionne
+                    // redirectToDashboard($user['role']);
+                    
+                    $success = "Connexion réussie ! Redirection en cours...";
+                    
                 } else {
                     $error = "Identifiant ou mot de passe incorrect.";
+                    $debug_info .= "✗ Mot de passe incorrect<br>";
                 }
             } else {
                 $error = "Identifiant ou mot de passe incorrect.";
+                $debug_info .= "✗ Aucun utilisateur trouvé avec cet identifiant<br>";
             }
             
         } catch(PDOException $e) {
-            $error = "Une erreur est survenue. Veuillez réessayer.";
-            error_log("Erreur de connexion : " . $e->getMessage());
+            $error = "Erreur de base de données : " . $e->getMessage();
+            $debug_info .= "✗ ERREUR PDO : " . $e->getMessage() . "<br>";
+            $debug_info .= "Code erreur : " . $e->getCode() . "<br>";
+        } catch(Exception $e) {
+            $error = "Erreur générale : " . $e->getMessage();
+            $debug_info .= "✗ ERREUR : " . $e->getMessage() . "<br>";
         }
     }
 }
@@ -176,18 +237,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
         }
         
-        .input-group-text {
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-right: none;
-            border-radius: 10px 0 0 10px;
-        }
-        
-        .input-group .form-control {
-            border-left: none;
-            border-radius: 0 10px 10px 0;
-        }
-        
         .btn-login {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border: none;
@@ -208,6 +257,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .alert {
             border-radius: 10px;
             margin-bottom: 20px;
+        }
+        
+        .debug-info {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 12px;
+            font-family: 'Courier New', monospace;
         }
         
         .divider {
@@ -270,11 +329,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="login-card">
                 <div class="login-header">
                     <i class="fas fa-user-md"></i>
-                    <h2>Connexion</h2>
+                    <h2>Connexion (Mode Debug)</h2>
                     <p class="mb-0">Accédez à votre espace</p>
                 </div>
                 
                 <div class="login-body">
+                    <?php if (!empty($debug_info)): ?>
+                        <div class="debug-info">
+                            <strong>📋 Informations de débogage :</strong><br>
+                            <?php echo $debug_info; ?>
+                        </div>
+                    <?php endif; ?>
+                    
                     <?php if (!empty($error)): ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <i class="fas fa-exclamation-circle"></i> <?php echo $error; ?>
@@ -334,6 +400,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <span>OU</span>
                     </div>
                     
+                    <div class="alert alert-info">
+                        <strong>🔍 Comptes de test :</strong><br>
+                        <small>
+                            <strong>Admin:</strong> admin@consultation-medicale.cm<br>
+                            <strong>Médecin:</strong> dr.dupont@medical.cm<br>
+                            <strong>Patient:</strong> alice.nkono@email.cm<br>
+                            <strong>Mot de passe:</strong> password
+                        </small>
+                    </div>
+                    
                     <div class="register-link">
                         <p class="mb-2">Vous n'avez pas de compte ?</p>
                         <a href="register.php">
@@ -362,17 +438,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Toggle icon
             this.classList.toggle('fa-eye');
             this.classList.toggle('fa-eye-slash');
-        });
-        
-        // Form validation
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            const identifiant = document.getElementById('identifiant').value.trim();
-            const motDePasse = document.getElementById('mot_de_passe').value;
-            
-            if (!identifiant || !motDePasse) {
-                e.preventDefault();
-                alert('Veuillez remplir tous les champs.');
-            }
         });
     </script>
 </body>
