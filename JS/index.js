@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loginButtons.forEach(button => {
         button.addEventListener('click', function() {
             // Redirection vers la page de connexion
-            window.location.href = 'login.php';
+            window.location.href = 'auth/login.php';
         });
     });
     
@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!button.type || button.type !== 'submit') {
                 e.preventDefault();
                 // Redirection vers la page d'inscription
-                window.location.href = 'signup.php';
+                window.location.href = 'auth/register.php';
             }
         });
     });
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function() {
             // Vérifier si l'utilisateur est connecté
             // Pour l'instant, redirection simple
-            window.location.href = 'signup.php';
+            window.location.href = 'auth/register.php';
         });
     });
     
