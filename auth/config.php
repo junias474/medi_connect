@@ -78,10 +78,10 @@ function isLoggedIn() {
 function redirectToDashboard($role) {
     switch($role) {
         case 'patient':
-            header("Location: dashboard/patient/index.php");
+            header("Location: ../pages/patient/index.php");
             break;
         case 'medecin':
-            header("Location: dashboard/medecin/index.php");
+            header("Location: ../pages/medecin/index.php");
             break;
         case 'administrateur':
             header("Location: dashboard/admin/index.php");
