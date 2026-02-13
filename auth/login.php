@@ -1,6 +1,6 @@
 <?php
 /**
- * Page de connexion (VERSION CORRIGÉE)
+ * Page de connexion - VERSION DÉFINITIVEMENT CORRIGÉE
  * Application de Consultation Médicale
  */
 
@@ -27,13 +27,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             // Rechercher l'utilisateur par email ou téléphone
             $stmt = $db->prepare("
-                SELECT id, nom, prenom, email, telephone, mot_de_passe, role, statut, ville
+                SELECT id, nom, prenom, email, telephone, mot_de_passe, role, statut
                 FROM utilisateurs
-                WHERE (email = :identifiant OR telephone = :identifiant)
+                WHERE (email = ? OR telephone = ?)
                 LIMIT 1
             ");
             
-            $stmt->execute([':identifiant' => $identifiant]);
+            $stmt->execute([$identifiant, $identifiant]);
             $user = $stmt->fetch();
             
             if ($user) {
@@ -43,9 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 } 
                 // Vérifier le mot de passe
                 elseif (password_verify($mot_de_passe, $user['mot_de_passe'])) {
+                    
                     // Mettre à jour la dernière connexion
-                    $updateStmt = $db->prepare("UPDATE utilisateurs SET derniere_connexion = NOW() WHERE id = :id");
-                    $updateStmt->execute([':id' => $user['id']]);
+                    $updateStmt = $db->prepare("UPDATE utilisateurs SET derniere_connexion = NOW() WHERE id = ?");
+                    $updateStmt->execute([$user['id']]);
                     
                     // Enregistrer les informations de session
                     $_SESSION['user_id'] = $user['id'];
@@ -56,47 +57,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     
                     // Récupérer l'ID spécifique selon le rôle
                     if ($user['role'] === 'patient') {
-                        $roleStmt = $db->prepare("SELECT id FROM patients WHERE utilisateur_id = :user_id");
-                        $roleStmt->execute([':user_id' => $user['id']]);
+                        $roleStmt = $db->prepare("SELECT id FROM patients WHERE utilisateur_id = ?");
+                        $roleStmt->execute([$user['id']]);
                         $roleData = $roleStmt->fetch();
                         if ($roleData) {
                             $_SESSION['patient_id'] = $roleData['id'];
                         }
                     } elseif ($user['role'] === 'medecin') {
-                        $roleStmt = $db->prepare("SELECT id FROM medecins WHERE utilisateur_id = :user_id");
-                        $roleStmt->execute([':user_id' => $user['id']]);
+                        $roleStmt = $db->prepare("SELECT id FROM medecins WHERE utilisateur_id = ?");
+                        $roleStmt->execute([$user['id']]);
                         $roleData = $roleStmt->fetch();
                         if ($roleData) {
                             $_SESSION['medecin_id'] = $roleData['id'];
                         }
                     } elseif ($user['role'] === 'administrateur') {
-                        $roleStmt = $db->prepare("SELECT id FROM administrateurs WHERE utilisateur_id = :user_id");
-                        $roleStmt->execute([':user_id' => $user['id']]);
+                        $roleStmt = $db->prepare("SELECT id FROM administrateurs WHERE utilisateur_id = ?");
+                        $roleStmt->execute([$user['id']]);
                         $roleData = $roleStmt->fetch();
                         if ($roleData) {
                             $_SESSION['admin_id'] = $roleData['id'];
                         }
                     }
                     
-                    // Enregistrer l'activité (VERSION CORRIGÉE)
+                    // Enregistrer l'activité - VERSION AVEC ? AU LIEU DE :param
                     try {
-                        $ip_address = $_SERVER['REMOTE_ADDR'] ?? 'Inconnue';
-                        $user_agent = $_SERVER['HTTP_USER_AGENT'] ?? 'Inconnu';
-                        
                         $logStmt = $db->prepare("
                             INSERT INTO logs_activite (utilisateur_id, action, description, adresse_ip, user_agent)
-                            VALUES (:utilisateur_id, :action, :description, :adresse_ip, :user_agent)
+                            VALUES (?, ?, ?, ?, ?)
                         ");
                         
                         $logStmt->execute([
-                            ':utilisateur_id' => $user['id'],
-                            ':action' => 'connexion',
-                            ':description' => 'Connexion réussie',
-                            ':adresse_ip' => $ip_address,
-                            ':user_agent' => $user_agent
+                            $user['id'],
+                            'connexion',
+                            'Connexion réussie',
+                            $_SERVER['REMOTE_ADDR'] ?? 'Inconnue',
+                            $_SERVER['HTTP_USER_AGENT'] ?? 'Inconnu'
                         ]);
                     } catch(PDOException $e) {
-                        // Si le log échoue, on continue quand même la connexion
+                        // Si le log échoue, on continue quand même
                         error_log("Erreur log : " . $e->getMessage());
                     }
                     
