@@ -1,12 +1,12 @@
 <?php
 /**
- * Dashboard Patient
- * Application de Consultation Médicale
+ * Patient Dashboard
+ * Medical Consultation Application
  */
 
 require_once '../../auth/config.php';
 
-// Vérifier si l'utilisateur est connecté et est un patient
+// Check if the user is logged in and is a patient
 if (!isLoggedIn() || $_SESSION['user_role'] !== 'patient') {
     header("Location: ../../login.php");
     exit();
@@ -18,18 +18,18 @@ $user_id = $_SESSION['user_id'];
 try {
     $db = Database::getInstance()->getConnection();
     
-    // Récupérer les informations du patient
+    // Get patient information
     $stmt = $db->prepare("SELECT * FROM vue_patients_complets WHERE id = ?");
     $stmt->execute([$patient_id]);
     $patient = $stmt->fetch();
     
-    // Statistiques du patient
-    // Nombre de rendez-vous
+    // Patient statistics
+    // Total appointments
     $stmt = $db->prepare("SELECT COUNT(*) as total FROM rendez_vous WHERE patient_id = ?");
     $stmt->execute([$patient_id]);
     $stats_rdv = $stmt->fetch();
     
-    // Rendez-vous à venir
+    // Upcoming appointments
     $stmt = $db->prepare("
         SELECT COUNT(*) as total 
         FROM rendez_vous 
@@ -40,7 +40,7 @@ try {
     $stmt->execute([$patient_id]);
     $rdv_a_venir = $stmt->fetch();
     
-    // Consultations terminées
+    // Completed consultations
     $stmt = $db->prepare("
         SELECT COUNT(*) as total 
         FROM consultations 
@@ -50,7 +50,7 @@ try {
     $stmt->execute([$patient_id]);
     $consultations_terminees = $stmt->fetch();
     
-    // Prochains rendez-vous (3 prochains)
+    // Next appointments (next 3)
     $stmt = $db->prepare("
         SELECT rv.*, 
                CONCAT(u.nom, ' ', u.prenom) as medecin_nom,
@@ -68,7 +68,7 @@ try {
     $stmt->execute([$patient_id]);
     $prochains_rdv = $stmt->fetchAll();
     
-    // Dernières consultations (3 dernières)
+    // Latest consultations (last 3)
     $stmt = $db->prepare("
         SELECT c.*, 
                rv.date_rendez_vous,
@@ -86,7 +86,7 @@ try {
     $stmt->execute([$patient_id]);
     $dernieres_consultations = $stmt->fetchAll();
     
-    // Notifications non lues
+    // Unread notifications
     $stmt = $db->prepare("
         SELECT COUNT(*) as total 
         FROM notifications 
@@ -97,16 +97,16 @@ try {
     $notif_non_lues = $stmt->fetch();
     
 } catch(PDOException $e) {
-    error_log("Erreur dashboard patient : " . $e->getMessage());
-    $error = "Une erreur est survenue lors du chargement du dashboard.";
+    error_log("Patient dashboard error: " . $e->getMessage());
+    $error = "An error occurred while loading the dashboard.";
 }
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Patient - <?php echo SITE_NAME; ?></title>
+    <title>Patient Dashboard - <?php echo SITE_NAME; ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -124,8 +124,7 @@ try {
         /* Sidebar */
         .sidebar {
             position: fixed;
-            top: 0;
-            left: 0;
+            top: 0; left: 0;
             height: 100vh;
             width: var(--sidebar-width);
             background: linear-gradient(180deg, var(--primary-color) 0%, var(--secondary-color) 100%);
@@ -141,20 +140,10 @@ try {
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         
-        .sidebar-header h4 {
-            margin: 10px 0 5px 0;
-            font-size: 18px;
-        }
+        .sidebar-header h4 { margin: 10px 0 5px 0; font-size: 18px; }
+        .sidebar-header p { margin: 0; font-size: 13px; opacity: 0.8; }
         
-        .sidebar-header p {
-            margin: 0;
-            font-size: 13px;
-            opacity: 0.8;
-        }
-        
-        .sidebar-menu {
-            padding: 20px 0;
-        }
+        .sidebar-menu { padding: 20px 0; }
         
         .sidebar-menu a {
             display: flex;
@@ -172,10 +161,7 @@ try {
             border-left-color: white;
         }
         
-        .sidebar-menu a i {
-            width: 30px;
-            font-size: 18px;
-        }
+        .sidebar-menu a i { width: 30px; font-size: 18px; }
         
         .sidebar-footer {
             position: absolute;
@@ -186,10 +172,7 @@ try {
         }
         
         /* Main content */
-        .main-content {
-            margin-left: var(--sidebar-width);
-            padding: 0;
-        }
+        .main-content { margin-left: var(--sidebar-width); padding: 0; }
         
         /* Top navbar */
         .top-navbar {
@@ -201,17 +184,9 @@ try {
             align-items: center;
         }
         
-        .top-navbar h2 {
-            margin: 0;
-            font-size: 24px;
-            color: #333;
-        }
+        .top-navbar h2 { margin: 0; font-size: 24px; color: #333; }
         
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+        .user-info { display: flex; align-items: center; gap: 15px; }
         
         .notification-badge {
             position: relative;
@@ -222,14 +197,12 @@ try {
         
         .notification-badge .badge {
             position: absolute;
-            top: -8px;
-            right: -8px;
+            top: -8px; right: -8px;
             font-size: 10px;
         }
         
         .user-avatar {
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             display: flex;
@@ -240,9 +213,7 @@ try {
         }
         
         /* Content area */
-        .content-area {
-            padding: 30px;
-        }
+        .content-area { padding: 30px; }
         
         /* Stats cards */
         .stats-grid {
@@ -260,14 +231,10 @@ try {
             transition: transform 0.3s, box-shadow 0.3s;
         }
         
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
+        .stat-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         
         .stat-card-icon {
-            width: 50px;
-            height: 50px;
+            width: 50px; height: 50px;
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -276,58 +243,18 @@ try {
             margin-bottom: 15px;
         }
         
-        .stat-card-icon.blue {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-        }
+        .stat-card-icon.blue { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+        .stat-card-icon.green { background: linear-gradient(135deg, #11998e, #38ef7d); color: white; }
+        .stat-card-icon.orange { background: linear-gradient(135deg, #f093fb, #f5576c); color: white; }
+        .stat-card-icon.purple { background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; }
         
-        .stat-card-icon.green {
-            background: linear-gradient(135deg, #11998e, #38ef7d);
-            color: white;
-        }
-        
-        .stat-card-icon.orange {
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-            color: white;
-        }
-        
-        .stat-card-icon.purple {
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
-            color: white;
-        }
-        
-        .stat-card h3 {
-            font-size: 32px;
-            font-weight: bold;
-            margin: 10px 0 5px 0;
-            color: #333;
-        }
-        
-        .stat-card p {
-            margin: 0;
-            color: #666;
-            font-size: 14px;
-        }
+        .stat-card h3 { font-size: 32px; font-weight: bold; margin: 10px 0 5px 0; color: #333; }
+        .stat-card p { margin: 0; color: #666; font-size: 14px; }
         
         /* Cards */
-        .card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
-        }
-        
-        .card-header {
-            background: white;
-            border-bottom: 1px solid #f0f0f0;
-            padding: 20px 25px;
-            font-weight: 600;
-            color: #333;
-        }
-        
-        .card-body {
-            padding: 25px;
-        }
+        .card { border: none; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .card-header { background: white; border-bottom: 1px solid #f0f0f0; padding: 20px 25px; font-weight: 600; color: #333; }
+        .card-body { padding: 25px; }
         
         /* Appointment card */
         .appointment-item {
@@ -340,10 +267,7 @@ try {
             transition: all 0.3s;
         }
         
-        .appointment-item:hover {
-            background: #e9ecef;
-            transform: translateX(5px);
-        }
+        .appointment-item:hover { background: #e9ecef; transform: translateX(5px); }
         
         .appointment-date {
             text-align: center;
@@ -354,34 +278,12 @@ try {
             min-width: 80px;
         }
         
-        .appointment-date .day {
-            font-size: 28px;
-            font-weight: bold;
-            color: var(--primary-color);
-            line-height: 1;
-        }
+        .appointment-date .day { font-size: 28px; font-weight: bold; color: var(--primary-color); line-height: 1; }
+        .appointment-date .month { font-size: 12px; color: #666; text-transform: uppercase; }
         
-        .appointment-date .month {
-            font-size: 12px;
-            color: #666;
-            text-transform: uppercase;
-        }
-        
-        .appointment-info {
-            flex: 1;
-        }
-        
-        .appointment-info h5 {
-            margin: 0 0 5px 0;
-            font-size: 16px;
-            color: #333;
-        }
-        
-        .appointment-info p {
-            margin: 0;
-            font-size: 13px;
-            color: #666;
-        }
+        .appointment-info { flex: 1; }
+        .appointment-info h5 { margin: 0 0 5px 0; font-size: 16px; color: #333; }
+        .appointment-info p { margin: 0; font-size: 13px; color: #666; }
         
         .appointment-time {
             display: flex;
@@ -392,31 +294,12 @@ try {
             font-size: 14px;
         }
         
-        .badge {
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-        }
-        
-        .btn-action {
-            padding: 8px 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-        }
+        .badge { padding: 5px 12px; border-radius: 20px; font-size: 12px; }
+        .btn-action { padding: 8px 20px; border-radius: 8px; font-size: 14px; font-weight: 500; }
         
         /* Empty state */
-        .empty-state {
-            text-align: center;
-            padding: 40px;
-            color: #999;
-        }
-        
-        .empty-state i {
-            font-size: 48px;
-            margin-bottom: 15px;
-            opacity: 0.3;
-        }
+        .empty-state { text-align: center; padding: 40px; color: #999; }
+        .empty-state i { font-size: 48px; margin-bottom: 15px; opacity: 0.3; }
         
         /* Quick actions */
         .quick-actions {
@@ -439,20 +322,9 @@ try {
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         
-        .quick-action-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            color: var(--primary-color);
-        }
-        
-        .quick-action-btn i {
-            font-size: 28px;
-            color: var(--primary-color);
-        }
-        
-        .quick-action-btn span {
-            font-weight: 500;
-        }
+        .quick-action-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); color: var(--primary-color); }
+        .quick-action-btn i { font-size: 28px; color: var(--primary-color); }
+        .quick-action-btn span { font-weight: 500; }
     </style>
 </head>
 <body>
@@ -467,38 +339,38 @@ try {
         <div class="sidebar-menu">
             <a href="index.php" class="active">
                 <i class="fas fa-home"></i>
-                <span>Accueil</span>
+                <span>Home</span>
             </a>
             <a href="rendez-vous.php">
                 <i class="fas fa-calendar-check"></i>
-                <span>Mes Rendez-vous</span>
+                <span>My Appointments</span>
             </a>
             <a href="nouveau-rdv.php">
                 <i class="fas fa-calendar-plus"></i>
-                <span>Nouveau Rendez-vous</span>
+                <span>New Appointment</span>
             </a>
             <a href="consultations.php">
                 <i class="fas fa-stethoscope"></i>
-                <span>Mes Consultations</span>
+                <span>My Consultations</span>
             </a>
             <a href="symptomes.php">
                 <i class="fas fa-notes-medical"></i>
-                <span>Mes Symptômes</span>
+                <span>My Symptoms</span>
             </a>
             <a href="documents.php">
                 <i class="fas fa-file-medical"></i>
-                <span>Documents Médicaux</span>
+                <span>Medical Documents</span>
             </a>
             <a href="profil.php">
                 <i class="fas fa-user-cog"></i>
-                <span>Mon Profil</span>
+                <span>My Profile</span>
             </a>
         </div>
         
         <div class="sidebar-footer">
             <a href="../../logout.php" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 10px;">
                 <i class="fas fa-sign-out-alt"></i>
-                <span>Déconnexion</span>
+                <span>Logout</span>
             </a>
         </div>
     </div>
@@ -507,7 +379,7 @@ try {
     <div class="main-content">
         <!-- Top Navbar -->
         <div class="top-navbar">
-            <h2>Tableau de bord</h2>
+            <h2>Dashboard</h2>
             
             <div class="user-info">
                 <div class="notification-badge">
@@ -527,23 +399,23 @@ try {
         <div class="content-area">
             <!-- Welcome Message -->
             <div class="alert alert-info" style="border-radius: 15px; border: none;">
-                <h5><i class="fas fa-info-circle"></i> Bienvenue, <?php echo htmlspecialchars($_SESSION['user_prenom']); ?> !</h5>
-                <p class="mb-0">Gérez vos rendez-vous médicaux et consultez votre historique de santé en toute simplicité.</p>
+                <h5><i class="fas fa-info-circle"></i> Welcome, <?php echo htmlspecialchars($_SESSION['user_prenom']); ?>!</h5>
+                <p class="mb-0">Manage your medical appointments and view your health history with ease.</p>
             </div>
             
             <!-- Quick Actions -->
             <div class="quick-actions">
                 <a href="nouveau-rdv.php" class="quick-action-btn">
                     <i class="fas fa-calendar-plus"></i>
-                    <span>Prendre RDV</span>
+                    <span>Book Appointment</span>
                 </a>
                 <a href="symptomes.php" class="quick-action-btn">
                     <i class="fas fa-notes-medical"></i>
-                    <span>Saisir symptômes</span>
+                    <span>Log Symptoms</span>
                 </a>
                 <a href="medecins.php" class="quick-action-btn">
                     <i class="fas fa-user-md"></i>
-                    <span>Trouver un médecin</span>
+                    <span>Find a Doctor</span>
                 </a>
             </div>
             
@@ -554,7 +426,7 @@ try {
                         <i class="fas fa-calendar-alt"></i>
                     </div>
                     <h3><?php echo $stats_rdv['total']; ?></h3>
-                    <p>Rendez-vous au total</p>
+                    <p>Total Appointments</p>
                 </div>
                 
                 <div class="stat-card">
@@ -562,7 +434,7 @@ try {
                         <i class="fas fa-calendar-check"></i>
                     </div>
                     <h3><?php echo $rdv_a_venir['total']; ?></h3>
-                    <p>Rendez-vous à venir</p>
+                    <p>Upcoming Appointments</p>
                 </div>
                 
                 <div class="stat-card">
@@ -570,7 +442,7 @@ try {
                         <i class="fas fa-stethoscope"></i>
                     </div>
                     <h3><?php echo $consultations_terminees['total']; ?></h3>
-                    <p>Consultations terminées</p>
+                    <p>Completed Consultations</p>
                 </div>
                 
                 <div class="stat-card">
@@ -578,27 +450,27 @@ try {
                         <i class="fas fa-heartbeat"></i>
                     </div>
                     <h3><?php echo !empty($patient['groupe_sanguin']) ? $patient['groupe_sanguin'] : 'N/A'; ?></h3>
-                    <p>Groupe sanguin</p>
+                    <p>Blood Type</p>
                 </div>
             </div>
             
             <div class="row">
-                <!-- Prochains rendez-vous -->
+                <!-- Upcoming appointments -->
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-header">
-                            <i class="fas fa-calendar-alt"></i> Prochains rendez-vous
+                            <i class="fas fa-calendar-alt"></i> Upcoming Appointments
                         </div>
                         <div class="card-body">
                             <?php if (count($prochains_rdv) > 0): ?>
                                 <?php foreach ($prochains_rdv as $rdv): 
                                     $date = new DateTime($rdv['date_rendez_vous']);
-                                    $mois = ['', 'Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'];
+                                    $months = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
                                 ?>
                                 <div class="appointment-item">
                                     <div class="appointment-date">
                                         <div class="day"><?php echo $date->format('d'); ?></div>
-                                        <div class="month"><?php echo $mois[(int)$date->format('n')]; ?></div>
+                                        <div class="month"><?php echo $months[(int)$date->format('n')]; ?></div>
                                     </div>
                                     <div class="appointment-info">
                                         <h5>Dr. <?php echo htmlspecialchars($rdv['medecin_nom']); ?></h5>
@@ -610,9 +482,9 @@ try {
                                     </div>
                                     <div>
                                         <?php if ($rdv['statut'] === 'confirme'): ?>
-                                            <span class="badge bg-success">Confirmé</span>
+                                            <span class="badge bg-success">Confirmed</span>
                                         <?php else: ?>
-                                            <span class="badge bg-warning">En attente</span>
+                                            <span class="badge bg-warning">Pending</span>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -620,15 +492,15 @@ try {
                                 
                                 <div class="text-center mt-3">
                                     <a href="rendez-vous.php" class="btn btn-primary btn-action">
-                                        Voir tous les rendez-vous
+                                        View all appointments
                                     </a>
                                 </div>
                             <?php else: ?>
                                 <div class="empty-state">
                                     <i class="fas fa-calendar-times"></i>
-                                    <p>Aucun rendez-vous à venir</p>
+                                    <p>No upcoming appointments</p>
                                     <a href="nouveau-rdv.php" class="btn btn-primary btn-action mt-3">
-                                        <i class="fas fa-plus"></i> Prendre un rendez-vous
+                                        <i class="fas fa-plus"></i> Book an appointment
                                     </a>
                                 </div>
                             <?php endif; ?>
@@ -636,11 +508,11 @@ try {
                     </div>
                 </div>
                 
-                <!-- Dernières consultations -->
+                <!-- Latest consultations -->
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-header">
-                            <i class="fas fa-history"></i> Dernières consultations
+                            <i class="fas fa-history"></i> Latest Consultations
                         </div>
                         <div class="card-body">
                             <?php if (count($dernieres_consultations) > 0): ?>
@@ -653,7 +525,7 @@ try {
                                     </h6>
                                     <p style="margin: 0; font-size: 12px; color: #666;">
                                         <i class="fas fa-calendar"></i> 
-                                        <?php echo $date->format('d/m/Y'); ?>
+                                        <?php echo $date->format('m/d/Y'); ?>
                                     </p>
                                     <p style="margin: 5px 0 0 0; font-size: 12px; color: #666;">
                                         <?php echo htmlspecialchars($consult['specialite']); ?>
@@ -663,13 +535,13 @@ try {
                                 
                                 <div class="text-center mt-3">
                                     <a href="consultations.php" class="btn btn-outline-primary btn-sm">
-                                        Voir tout l'historique
+                                        View full history
                                     </a>
                                 </div>
                             <?php else: ?>
                                 <div class="empty-state">
                                     <i class="fas fa-folder-open"></i>
-                                    <p style="font-size: 13px;">Aucune consultation</p>
+                                    <p style="font-size: 13px;">No consultations yet</p>
                                 </div>
                             <?php endif; ?>
                         </div>

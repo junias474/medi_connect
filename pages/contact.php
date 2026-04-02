@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,47 +24,41 @@
             
             <div class="search-area">
                 <i class="bi bi-search search-icon"></i>
-                <input type="search" id="search_input" placeholder="Rechercher...">
+                <input type="search" id="search_input" placeholder="Search...">
             </div>
             
             <nav class="main-nav">
-                <a href="index.php" class="nav-link">Accueil</a>
+                <a href="index.php" class="nav-link">Home</a>
                 <a href="services.php" class="nav-link">Services</a>
-                <a href="about.php" class="nav-link">À Propos</a>
+                <a href="about.php" class="nav-link">About</a>
                 <a href="contact.php" class="nav-link active">Contact</a>
             </nav>
             
             <div class="user-actions">
                 <button class="btn btn-secondary" id="login_button">
-                    <i class="bi bi-person"></i>
-                    Connexion
+                    <i class="bi bi-person"></i> Login
                 </button>
                 <button class="btn btn-primary" id="signup_button">
-                    Commencer
-                    <i class="bi bi-arrow-right"></i>
+                    Get Started <i class="bi bi-arrow-right"></i>
                 </button>
             </div>
             
             <button class="mobile-menu-toggle" id="mobile-menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
         </div>
         
         <nav class="mobile-nav" id="mobile-nav">
-            <a href="index.php" class="mobile-nav-link">Accueil</a>
+            <a href="index.php" class="mobile-nav-link">Home</a>
             <a href="services.php" class="mobile-nav-link">Services</a>
-            <a href="about.php" class="mobile-nav-link">À Propos</a>
+            <a href="about.php" class="mobile-nav-link">About</a>
             <a href="contact.php" class="mobile-nav-link active">Contact</a>
             <div class="mobile-nav-actions">
                 <button class="btn btn-secondary btn-block">
-                    <i class="bi bi-person"></i>
-                    Connexion
+                    <i class="bi bi-person"></i> Login
                 </button>
                 <button class="btn btn-primary btn-block">
-                    Commencer
-                    <i class="bi bi-arrow-right"></i>
+                    Get Started <i class="bi bi-arrow-right"></i>
                 </button>
             </div>
         </nav>
@@ -73,13 +67,13 @@
     <section class="page-hero">
         <div class="hero-content">
             <nav class="breadcrumb">
-                <a href="index.php">Accueil</a>
+                <a href="index.php">Home</a>
                 <i class="bi bi-chevron-right"></i>
                 <span>Contact</span>
             </nav>
-            <h1 class="page-title">Contactez-nous</h1>
+            <h1 class="page-title">Contact Us</h1>
             <p class="page-description">
-                Notre équipe est à votre écoute pour répondre à toutes vos questions
+                Our team is here to answer all your questions
             </p>
         </div>
         <div class="hero-decoration">
@@ -92,99 +86,80 @@
         <div class="container">
             <div class="contact-grid">
                 <div class="contact-info-section">
-                    <h2>Besoin d'aide ?</h2>
+                    <h2>Need help?</h2>
                     <p class="intro-text">
-                        N'hésitez pas à nous contacter. Notre équipe est disponible pour répondre 
-                        à toutes vos questions et vous accompagner dans votre parcours de santé.
+                        Don't hesitate to reach out. Our team is available to answer 
+                        all your questions and support you throughout your healthcare journey.
                     </p>
                     
                     <div class="contact-methods">
                         <div class="contact-card">
-                            <div class="contact-icon">
-                                <i class="bi bi-envelope-fill"></i>
-                            </div>
+                            <div class="contact-icon"><i class="bi bi-envelope-fill"></i></div>
                             <div class="contact-details">
                                 <h3>Email</h3>
                                 <p>contact@medi-connect.com</p>
                                 <p>support@medi-connect.com</p>
-                                <span class="response-time">Réponse sous 24h</span>
+                                <span class="response-time">Reply within 24h</span>
                             </div>
                         </div>
                         
                         <div class="contact-card">
-                            <div class="contact-icon">
-                                <i class="bi bi-telephone-fill"></i>
-                            </div>
+                            <div class="contact-icon"><i class="bi bi-telephone-fill"></i></div>
                             <div class="contact-details">
-                                <h3>Téléphone</h3>
+                                <h3>Phone</h3>
                                 <p>+237 6XX XXX XXX</p>
                                 <p>+237 6YY YYY YYY</p>
-                                <span class="response-time">Lun-Ven 8h-18h</span>
+                                <span class="response-time">Mon–Fri 8am–6pm</span>
                             </div>
                         </div>
                         
                         <div class="contact-card">
-                            <div class="contact-icon">
-                                <i class="bi bi-geo-alt-fill"></i>
-                            </div>
+                            <div class="contact-icon"><i class="bi bi-geo-alt-fill"></i></div>
                             <div class="contact-details">
-                                <h3>Adresse</h3>
-                                <p>123 Avenue de la Santé</p>
-                                <p>Yaoundé, Cameroun</p>
-                                <span class="response-time">Bureaux ouverts</span>
+                                <h3>Address</h3>
+                                <p>123 Health Avenue</p>
+                                <p>Yaoundé, Cameroon</p>
+                                <span class="response-time">Offices open</span>
                             </div>
                         </div>
                         
                         <div class="contact-card">
-                            <div class="contact-icon">
-                                <i class="bi bi-clock-fill"></i>
-                            </div>
+                            <div class="contact-icon"><i class="bi bi-clock-fill"></i></div>
                             <div class="contact-details">
-                                <h3>Horaires</h3>
-                                <p>Service client : 24/7</p>
-                                <p>Bureaux : Lun-Ven 8h-18h</p>
-                                <span class="response-time">Toujours disponible</span>
+                                <h3>Hours</h3>
+                                <p>Customer service: 24/7</p>
+                                <p>Offices: Mon–Fri 8am–6pm</p>
+                                <span class="response-time">Always available</span>
                             </div>
                         </div>
                     </div>
                     
                     <div class="social-contact">
-                        <h3>Suivez-nous</h3>
+                        <h3>Follow us</h3>
                         <div class="social-links">
-                            <a href="#" class="social-link" aria-label="Facebook">
-                                <i class="bi bi-facebook"></i>
-                            </a>
-                            <a href="#" class="social-link" aria-label="Twitter">
-                                <i class="bi bi-twitter"></i>
-                            </a>
-                            <a href="#" class="social-link" aria-label="LinkedIn">
-                                <i class="bi bi-linkedin"></i>
-                            </a>
-                            <a href="#" class="social-link" aria-label="Instagram">
-                                <i class="bi bi-instagram"></i>
-                            </a>
-                            <a href="#" class="social-link" aria-label="WhatsApp">
-                                <i class="bi bi-whatsapp"></i>
-                            </a>
+                            <a href="#" class="social-link" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="social-link" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="#" class="social-link" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                            <a href="#" class="social-link" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="social-link" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
                         </div>
                     </div>
                 </div>
                 
                 <div class="contact-form-section">
                     <div class="form-header">
-                        <h2>Envoyez-nous un message</h2>
-                        <p>Remplissez le formulaire ci-dessous et nous vous répondrons rapidement</p>
+                        <h2>Send us a message</h2>
+                        <p>Fill in the form below and we'll get back to you quickly</p>
                     </div>
                     
                     <form class="contact-form" id="contact-form">
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="first-name">Prénom <span class="required">*</span></label>
+                                <label for="first-name">First Name <span class="required">*</span></label>
                                 <input type="text" id="first-name" name="first-name" required>
                             </div>
-                            
                             <div class="form-group">
-                                <label for="last-name">Nom <span class="required">*</span></label>
+                                <label for="last-name">Last Name <span class="required">*</span></label>
                                 <input type="text" id="last-name" name="last-name" required>
                             </div>
                         </div>
@@ -195,20 +170,20 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="phone">Téléphone</label>
+                            <label for="phone">Phone</label>
                             <input type="tel" id="phone" name="phone">
                         </div>
                         
                         <div class="form-group">
-                            <label for="subject">Sujet <span class="required">*</span></label>
+                            <label for="subject">Subject <span class="required">*</span></label>
                             <select id="subject" name="subject" required>
-                                <option value="">Sélectionnez un sujet</option>
-                                <option value="info">Demande d'information</option>
-                                <option value="rdv">Prise de rendez-vous</option>
-                                <option value="technique">Problème technique</option>
-                                <option value="feedback">Avis et suggestions</option>
-                                <option value="partenariat">Partenariat</option>
-                                <option value="autre">Autre</option>
+                                <option value="">Select a subject</option>
+                                <option value="info">Information request</option>
+                                <option value="rdv">Appointment booking</option>
+                                <option value="technique">Technical issue</option>
+                                <option value="feedback">Feedback & suggestions</option>
+                                <option value="partenariat">Partnership</option>
+                                <option value="autre">Other</option>
                             </select>
                         </div>
                         
@@ -220,12 +195,12 @@
                         <div class="form-checkbox">
                             <input type="checkbox" id="consent" name="consent" required>
                             <label for="consent">
-                                J'accepte que mes données soient utilisées pour répondre à ma demande
+                                I consent to my data being used to respond to my request
                             </label>
                         </div>
                         
                         <button type="submit" class="btn-submit">
-                            <span class="btn-text">Envoyer le message</span>
+                            <span class="btn-text">Send message</span>
                             <i class="bi bi-send"></i>
                         </button>
                         
@@ -240,88 +215,88 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-label">FAQ</span>
-                <h2>Questions Fréquentes</h2>
-                <p>Trouvez rapidement des réponses à vos questions</p>
+                <h2>Frequently Asked Questions</h2>
+                <p>Find quick answers to your questions</p>
             </div>
             
             <div class="faq-grid">
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>Comment prendre un rendez-vous ?</h3>
+                        <h3>How do I book an appointment?</h3>
                         <i class="bi bi-plus"></i>
                     </div>
                     <div class="faq-answer">
                         <p>
-                            Pour prendre rendez-vous, créez d'abord votre compte sur Medi-Connect. 
-                            Ensuite, accédez à votre tableau de bord, sélectionnez la spécialité médicale souhaitée, 
-                            choisissez un médecin disponible et réservez votre créneau horaire.
+                            To book an appointment, first create your Medi-Connect account. 
+                            Then, go to your dashboard, select the desired medical specialty, 
+                            choose an available doctor and reserve your time slot.
                         </p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>Les consultations en ligne sont-elles sécurisées ?</h3>
+                        <h3>Are online consultations secure?</h3>
                         <i class="bi bi-plus"></i>
                     </div>
                     <div class="faq-answer">
                         <p>
-                            Absolument. Nous utilisons un cryptage de bout en bout pour toutes nos consultations vidéo 
-                            et vos données médicales sont protégées selon les normes les plus strictes. 
-                            Votre confidentialité est notre priorité.
+                            Absolutely. We use end-to-end encryption for all our video consultations 
+                            and your medical data is protected according to the strictest standards. 
+                            Your privacy is our priority.
                         </p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>Puis-je obtenir une ordonnance en ligne ?</h3>
+                        <h3>Can I get a prescription online?</h3>
                         <i class="bi bi-plus"></i>
                     </div>
                     <div class="faq-answer">
                         <p>
-                            Oui, si le médecin juge qu'une prescription est nécessaire suite à votre consultation, 
-                            vous recevrez une ordonnance numérique par email que vous pourrez présenter en pharmacie.
+                            Yes, if the doctor determines that a prescription is necessary after your consultation, 
+                            you will receive a digital prescription by email that you can present at a pharmacy.
                         </p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>Quels sont les moyens de paiement acceptés ?</h3>
+                        <h3>What payment methods are accepted?</h3>
                         <i class="bi bi-plus"></i>
                     </div>
                     <div class="faq-answer">
                         <p>
-                            Nous acceptons les cartes bancaires (Visa, Mastercard), Mobile Money (MTN, Orange Money) 
-                            et les virements bancaires. Le paiement est sécurisé et crypté.
+                            We accept bank cards (Visa, Mastercard), Mobile Money (MTN, Orange Money) 
+                            and bank transfers. Payment is secure and encrypted.
                         </p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>Comment annuler ou modifier un rendez-vous ?</h3>
+                        <h3>How do I cancel or reschedule an appointment?</h3>
                         <i class="bi bi-plus"></i>
                     </div>
                     <div class="faq-answer">
                         <p>
-                            Connectez-vous à votre compte, accédez à "Mes rendez-vous" dans votre tableau de bord. 
-                            Vous pouvez annuler ou modifier un rendez-vous jusqu'à 2 heures avant l'heure prévue.
+                            Log in to your account, go to "My Appointments" in your dashboard. 
+                            You can cancel or reschedule an appointment up to 2 hours before the scheduled time.
                         </p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>Les médecins sont-ils certifiés ?</h3>
+                        <h3>Are the doctors certified?</h3>
                         <i class="bi bi-plus"></i>
                     </div>
                     <div class="faq-answer">
                         <p>
-                            Tous nos médecins sont certifiés et enregistrés auprès de l'Ordre des Médecins. 
-                            Nous vérifions rigoureusement leurs qualifications et leur expérience avant de les intégrer 
-                            à notre plateforme.
+                            All our doctors are certified and registered with the Medical Council. 
+                            We rigorously verify their qualifications and experience before integrating them 
+                            into our platform.
                         </p>
                     </div>
                 </div>
@@ -332,10 +307,10 @@
     <section class="cta-section">
         <div class="container">
             <div class="cta-content">
-                <h2>Prêt à commencer ?</h2>
-                <p>Créez votre compte et accédez à des consultations médicales de qualité</p>
+                <h2>Ready to get started?</h2>
+                <p>Create your account and access quality medical consultations</p>
                 <button class="btn-cta">
-                    Créer mon compte gratuitement
+                    Create my account for free
                     <i class="bi bi-arrow-right"></i>
                 </button>
             </div>
@@ -352,7 +327,7 @@
                         </div>
                         <h3><span class="logo-main">Medi</span><span class="logo-accent">Connect</span></h3>
                     </div>
-                    <p>Votre santé, notre priorité. Accédez à des consultations médicales de qualité, où que vous soyez.</p>
+                    <p>Your health, our priority. Access quality medical consultations wherever you are.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
                         <a href="#" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
@@ -364,9 +339,9 @@
                 <div class="footer-links">
                     <h4>Navigation</h4>
                     <ul>
-                        <li><a href="index.php">Accueil</a></li>
+                        <li><a href="index.php">Home</a></li>
                         <li><a href="services.php">Services</a></li>
-                        <li><a href="about.php">À Propos</a></li>
+                        <li><a href="about.php">About</a></li>
                         <li><a href="contact.php">Contact</a></li>
                     </ul>
                 </div>
@@ -374,27 +349,27 @@
                 <div class="footer-links">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="services.php">Consultation en ligne</a></li>
-                        <li><a href="services.php">Prise de rendez-vous</a></li>
-                        <li><a href="services.php">Orientation médicale</a></li>
-                        <li><a href="#">Urgences</a></li>
+                        <li><a href="services.php">Online Consultation</a></li>
+                        <li><a href="services.php">Appointment Booking</a></li>
+                        <li><a href="services.php">Medical Orientation</a></li>
+                        <li><a href="#">Emergencies</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-links">
-                    <h4>Légal</h4>
+                    <h4>Legal</h4>
                     <ul>
-                        <li><a href="#">Conditions d'utilisation</a></li>
-                        <li><a href="#">Politique de confidentialité</a></li>
-                        <li><a href="#">Mentions légales</a></li>
-                        <li><a href="#">CGU</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Legal Notice</a></li>
+                        <li><a href="#">GTC</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2026 Medi-Connect. Tous droits réservés.</p>
-                <p>Développé par <strong>BEKONO</strong> | Encadré par <strong>BEDING JUNIAS</strong></p>
+                <p>&copy; 2026 Medi-Connect. All rights reserved.</p>
+                <p>Developed by <strong>BEKONO</strong> | Supervised by <strong>BEDING JUNIAS</strong></p>
             </div>
         </div>
     </footer>

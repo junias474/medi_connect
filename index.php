@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Medi-Connect - Plateforme de consultation médicale en ligne. Prenez rendez-vous avec des médecins qualifiés facilement.">
+    <meta name="description" content="Medi-Connect - Online medical consultation platform. Easily book appointments with qualified doctors.">
     <link rel="stylesheet" href="design/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <title>Medi-Connect - Votre santé, notre priorité</title>
+    <title>Medi-Connect - Your health, our priority</title>
 </head>
 <body>
-    <!-- Écran de démarrage -->
+    <!-- Splash screen -->
     <div class="splash-screen" id="splash-screen">
         <div class="splash-content">
             <div class="splash-logo">
@@ -22,19 +21,18 @@
             <h1 class="splash-title">
                 <span class="splash-main">Medi</span><span class="splash-accent">Connect</span>
             </h1>
-            <p class="splash-tagline">Votre santé, notre priorité</p>
+            <p class="splash-tagline">Your health, our priority</p>
             <div class="splash-loader">
                 <div class="loader-bar"></div>
             </div>
         </div>
     </div>
 
-    <!-- Contenu principal -->
+    <!-- Main content -->
     <div class="main-content" id="main-content">
         <!-- HEADER -->
         <header class="main-header">
             <div class="header-container">
-                <!-- Logo -->
                 <div class="logo-section">
                     <div class="logo-icon">
                         <img src="design/assets/medi_connect_logo.png" alt="Medi-Connect Logo">
@@ -44,52 +42,41 @@
                     </h1>
                 </div>
                 
-                <!-- Recherche -->
                 <div class="search-area">
                     <i class="bi bi-search search-icon"></i>
-                    <input type="search" id="search_input" placeholder="Rechercher un médecin, spécialité...">
+                    <input type="search" id="search_input" placeholder="Search for a doctor, specialty...">
                 </div>
                 
-                <!-- Navigation -->
                 <nav class="main-nav">
                     <a href="#services" class="nav-link">Services</a>
-                    <a href="#apropos" class="nav-link">À Propos</a>
+                    <a href="#about" class="nav-link">About</a>
                     <a href="#contact" class="nav-link">Contact</a>
                 </nav>
                 
-                <!-- Boutons utilisateur -->
                 <div class="user-actions">
                     <button class="btn btn-secondary" id="login_button">
-                        <i class="bi bi-person"></i>
-                        Connexion
+                        <i class="bi bi-person"></i> Login
                     </button>
                     <button class="btn btn-primary" id="signup_button">
-                        Commencer
-                        <i class="bi bi-arrow-right"></i>
+                        Get Started <i class="bi bi-arrow-right"></i>
                     </button>
                 </div>
                 
-                <!-- Menu mobile toggle -->
                 <button class="mobile-menu-toggle" id="mobile-menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    <span></span><span></span><span></span>
                 </button>
             </div>
             
-            <!-- Navigation mobile -->
             <nav class="mobile-nav" id="mobile-nav">
                 <a href="#services" class="mobile-nav-link">Services</a>
-                <a href="#apropos" class="mobile-nav-link">À Propos</a>
+                <a href="#about" class="mobile-nav-link">About</a>
                 <a href="#contact" class="mobile-nav-link">Contact</a>
                 <div class="mobile-nav-actions">
                     <button class="btn btn-secondary btn-block">
-                        <i class="bi bi-person"></i>
-                        Connexion
+                        <i class="bi bi-person"></i> Login
                     </button>
                     <button class="btn btn-primary btn-block">
-                        Commencer
-                        <i class="bi bi-arrow-right"></i>
+                        Get Started <i class="bi bi-arrow-right"></i>
                     </button>
                 </div>
             </nav>
@@ -101,56 +88,50 @@
                 <div class="hero-content">
                     <div class="hero-badge">
                         <i class="bi bi-shield-check"></i>
-                        <span>Plateforme Sécurisée & Certifiée</span>
+                        <span>Secure & Certified Platform</span>
                     </div>
                     
                     <h2 class="hero-title">
-                        Consultez un médecin 
-                        <span class="hero-highlight">où que vous soyez</span>
+                        Consult a doctor 
+                        <span class="hero-highlight">wherever you are</span>
                     </h2>
                     
                     <p class="hero-description">
-                        Accédez à des consultations médicales de qualité en ligne, prenez rendez-vous facilement 
-                        et trouvez le centre de santé le plus proche de vous.
+                        Access quality online medical consultations, book appointments easily 
+                        and find the nearest healthcare center to you.
                     </p>
                     
                     <div class="hero-actions">
                         <button class="btn-hero btn-hero-primary">
                             <i class="bi bi-calendar-check"></i>
-                            Prendre rendez-vous
+                            Book an appointment
                         </button>
                         <button class="btn-hero btn-hero-secondary">
                             <i class="bi bi-play-circle"></i>
-                            Voir la démo
+                            Watch the demo
                         </button>
                     </div>
                     
                     <div class="hero-stats">
                         <div class="stat-item">
-                            <div class="stat-icon">
-                                <i class="bi bi-people"></i>
-                            </div>
+                            <div class="stat-icon"><i class="bi bi-people"></i></div>
                             <div class="stat-info">
                                 <h4>5000+</h4>
-                                <p>Patients satisfaits</p>
+                                <p>Satisfied patients</p>
                             </div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-icon">
-                                <i class="bi bi-person-badge"></i>
-                            </div>
+                            <div class="stat-icon"><i class="bi bi-person-badge"></i></div>
                             <div class="stat-info">
                                 <h4>150+</h4>
-                                <p>Médecins qualifiés</p>
+                                <p>Qualified doctors</p>
                             </div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-icon">
-                                <i class="bi bi-clock-history"></i>
-                            </div>
+                            <div class="stat-icon"><i class="bi bi-clock-history"></i></div>
                             <div class="stat-info">
                                 <h4>24/7</h4>
-                                <p>Disponibilité</p>
+                                <p>Availability</p>
                             </div>
                         </div>
                     </div>
@@ -161,25 +142,24 @@
                         <div class="floating-card card-1">
                             <i class="bi bi-heart-pulse"></i>
                             <div>
-                                <h5>Consultation rapide</h5>
-                                <p>En moins de 15 min</p>
+                                <h5>Quick consultation</h5>
+                                <p>In less than 15 min</p>
                             </div>
                         </div>
                         <div class="floating-card card-2">
                             <i class="bi bi-shield-check"></i>
                             <div>
-                                <h5>100% Sécurisé</h5>
-                                <p>Données protégées</p>
+                                <h5>100% Secure</h5>
+                                <p>Protected data</p>
                             </div>
                         </div>
                         <div class="floating-card card-3">
                             <i class="bi bi-star-fill"></i>
                             <div>
                                 <h5>4.9/5</h5>
-                                <p>Note moyenne</p>
+                                <p>Average rating</p>
                             </div>
                         </div>
-                        <!-- Placeholder pour image principale -->
                         <div class="hero-main-image">
                             <i class="bi bi-hospital"></i>
                         </div>
@@ -187,7 +167,6 @@
                 </div>
             </div>
             
-            <!-- Décoration de fond -->
             <div class="hero-bg-decoration">
                 <div class="decoration-circle circle-1"></div>
                 <div class="decoration-circle circle-2"></div>
@@ -199,59 +178,52 @@
         <section class="services-preview" id="services">
             <div class="section-container">
                 <div class="section-header">
-                    <span class="section-label">Nos Services</span>
-                    <h2 class="section-title">Ce que nous offrons</h2>
+                    <span class="section-label">Our Services</span>
+                    <h2 class="section-title">What we offer</h2>
                     <p class="section-description">
-                        Des solutions complètes pour votre santé et votre bien-être
+                        Comprehensive solutions for your health and well-being
                     </p>
                 </div>
                 
                 <div class="services-grid">
                     <div class="service-card">
-                        <div class="service-icon">
-                            <i class="bi bi-camera-video"></i>
-                        </div>
-                        <h3>Consultation en ligne</h3>
-                        <p>Consultez un médecin par vidéo depuis le confort de votre domicile. Rapide, pratique et sécurisé.</p>
+                        <div class="service-icon"><i class="bi bi-camera-video"></i></div>
+                        <h3>Online Consultation</h3>
+                        <p>Consult a doctor by video from the comfort of your home. Fast, convenient and secure.</p>
                         <ul class="service-features">
-                            <li><i class="bi bi-check-circle"></i> Vidéoconférence HD</li>
-                            <li><i class="bi bi-check-circle"></i> Ordonnance numérique</li>
-                            <li><i class="bi bi-check-circle"></i> Historique médical</li>
+                            <li><i class="bi bi-check-circle"></i> HD video conference</li>
+                            <li><i class="bi bi-check-circle"></i> Digital prescription</li>
+                            <li><i class="bi bi-check-circle"></i> Medical history</li>
                         </ul>
                     </div>
                     
                     <div class="service-card featured">
-                        <div class="featured-badge">Populaire</div>
-                        <div class="service-icon">
-                            <i class="bi bi-calendar-check"></i>
-                        </div>
-                        <h3>Prise de rendez-vous</h3>
-                        <p>Planifiez vos consultations selon vos disponibilités et celles des médecins. Simple et rapide.</p>
+                        <div class="featured-badge">Popular</div>
+                        <div class="service-icon"><i class="bi bi-calendar-check"></i></div>
+                        <h3>Appointment Booking</h3>
+                        <p>Schedule your consultations based on your availability and the doctors'. Simple and fast.</p>
                         <ul class="service-features">
-                            <li><i class="bi bi-check-circle"></i> Disponibilités en temps réel</li>
-                            <li><i class="bi bi-check-circle"></i> Rappels automatiques</li>
-                            <li><i class="bi bi-check-circle"></i> Reprogrammation facile</li>
+                            <li><i class="bi bi-check-circle"></i> Real-time availability</li>
+                            <li><i class="bi bi-check-circle"></i> Automatic reminders</li>
+                            <li><i class="bi bi-check-circle"></i> Easy rescheduling</li>
                         </ul>
                     </div>
                     
                     <div class="service-card">
-                        <div class="service-icon">
-                            <i class="bi bi-geo-alt"></i>
-                        </div>
-                        <h3>Orientation médicale</h3>
-                        <p>Trouvez le centre de santé le plus proche de vous grâce à notre système de géolocalisation.</p>
+                        <div class="service-icon"><i class="bi bi-geo-alt"></i></div>
+                        <h3>Medical Orientation</h3>
+                        <p>Find the nearest healthcare center to you with our geolocation system.</p>
                         <ul class="service-features">
-                            <li><i class="bi bi-check-circle"></i> Carte interactive</li>
-                            <li><i class="bi bi-check-circle"></i> Itinéraires optimisés</li>
-                            <li><i class="bi bi-check-circle"></i> Informations détaillées</li>
+                            <li><i class="bi bi-check-circle"></i> Interactive map</li>
+                            <li><i class="bi bi-check-circle"></i> Optimized routes</li>
+                            <li><i class="bi bi-check-circle"></i> Detailed information</li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="section-cta">
                     <a href="pages/services.php" class="btn-link">
-                        Découvrir tous nos services
-                        <i class="bi bi-arrow-right"></i>
+                        Discover all our services <i class="bi bi-arrow-right"></i>
                     </a>
                 </div>
             </div>
@@ -261,107 +233,100 @@
         <section class="how-it-works">
             <div class="section-container">
                 <div class="section-header">
-                    <span class="section-label">Comment ça marche</span>
-                    <h2 class="section-title">Consultez un médecin en 3 étapes</h2>
+                    <span class="section-label">How it works</span>
+                    <h2 class="section-title">Consult a doctor in 3 steps</h2>
                 </div>
                 
                 <div class="steps-container">
                     <div class="step-item">
                         <div class="step-number">01</div>
-                        <div class="step-icon">
-                            <i class="bi bi-person-plus"></i>
-                        </div>
-                        <h3>Créez votre compte</h3>
-                        <p>Inscrivez-vous gratuitement en quelques secondes avec vos informations de base.</p>
+                        <div class="step-icon"><i class="bi bi-person-plus"></i></div>
+                        <h3>Create your account</h3>
+                        <p>Sign up for free in just a few seconds with your basic information.</p>
                     </div>
                     
                     <div class="step-connector"></div>
                     
                     <div class="step-item">
                         <div class="step-number">02</div>
-                        <div class="step-icon">
-                            <i class="bi bi-clipboard2-pulse"></i>
-                        </div>
-                        <h3>Décrivez vos symptômes</h3>
-                        <p>Renseignez vos symptômes et prenez rendez-vous avec un médecin disponible.</p>
+                        <div class="step-icon"><i class="bi bi-clipboard2-pulse"></i></div>
+                        <h3>Describe your symptoms</h3>
+                        <p>Enter your symptoms and book an appointment with an available doctor.</p>
                     </div>
                     
                     <div class="step-connector"></div>
                     
                     <div class="step-item">
                         <div class="step-number">03</div>
-                        <div class="step-icon">
-                            <i class="bi bi-camera-video"></i>
-                        </div>
-                        <h3>Consultez en ligne</h3>
-                        <p>Connectez-vous à votre consultation vidéo et recevez votre ordonnance.</p>
+                        <div class="step-icon"><i class="bi bi-camera-video"></i></div>
+                        <h3>Consult online</h3>
+                        <p>Join your video consultation and receive your prescription.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- ABOUT PREVIEW SECTION -->
-        <section class="about-preview" id="apropos">
+        <section class="about-preview" id="about">
             <div class="section-container">
                 <div class="about-grid">
                     <div class="about-content">
-                        <span class="section-label">À Propos de Nous</span>
-                        <h2 class="section-title">Une plateforme pensée pour votre santé</h2>
+                        <span class="section-label">About Us</span>
+                        <h2 class="section-title">A platform built for your health</h2>
                         <p class="about-text">
-                            Medi-Connect est né de la volonté de rendre les soins de santé plus accessibles à tous. 
-                            Nous croyons que chacun mérite un accès facile et rapide à des professionnels de santé qualifiés, 
-                            quel que soit l'endroit où il se trouve.
+                            Medi-Connect was born from the desire to make healthcare more accessible to everyone. 
+                            We believe that everyone deserves easy and fast access to qualified health professionals, 
+                            regardless of where they are.
                         </p>
                         <p class="about-text">
-                            Notre mission est de transformer l'expérience de consultation médicale en combinant technologie 
-                            moderne et expertise médicale de qualité, tout en garantissant la sécurité et la confidentialité 
-                            de vos données.
+                            Our mission is to transform the medical consultation experience by combining modern 
+                            technology with quality medical expertise, while guaranteeing the security and confidentiality 
+                            of your data.
                         </p>
                         
                         <div class="about-values">
                             <div class="value-item">
                                 <i class="bi bi-shield-check"></i>
                                 <div>
-                                    <h4>Sécurité</h4>
-                                    <p>Vos données sont protégées</p>
+                                    <h4>Security</h4>
+                                    <p>Your data is protected</p>
                                 </div>
                             </div>
                             <div class="value-item">
                                 <i class="bi bi-award"></i>
                                 <div>
-                                    <h4>Qualité</h4>
-                                    <p>Médecins certifiés et expérimentés</p>
+                                    <h4>Quality</h4>
+                                    <p>Certified and experienced doctors</p>
                                 </div>
                             </div>
                             <div class="value-item">
                                 <i class="bi bi-clock"></i>
                                 <div>
-                                    <h4>Disponibilité</h4>
+                                    <h4>Availability</h4>
                                     <p>Service accessible 24/7</p>
                                 </div>
                             </div>
                         </div>
                         
                         <a href="about.php" class="btn-link">
-                            En savoir plus sur notre mission
-                            <i class="bi bi-arrow-right"></i>
+                            Learn more about our mission <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
                     
                     <div class="about-visual">
                         <div class="about-image-card">
                             <i class="bi bi-heart-pulse-fill"></i>
-                            <h4>Notre Vision</h4>
-                            <p>Démocratiser l'accès aux soins de santé grâce à la technologie</p>
+                            <h4>Our Vision</h4>
+                            <p>Democratizing access to healthcare through technology</p>
                         </div>
                         <div class="stats-mini">
                             <div class="stat-mini-item">
                                 <h3>98%</h3>
-                                <p>Taux de satisfaction</p>
+                                <p>Satisfaction rate</p>
                             </div>
                             <div class="stat-mini-item">
                                 <h3>2020</h3>
-                                <p>Année de création</p>
+                                <p>Year founded</p>
                             </div>
                         </div>
                     </div>
@@ -373,76 +338,64 @@
         <section class="testimonials">
             <div class="section-container">
                 <div class="section-header">
-                    <span class="section-label">Témoignages</span>
-                    <h2 class="section-title">Ce que disent nos patients</h2>
+                    <span class="section-label">Testimonials</span>
+                    <h2 class="section-title">What our patients say</h2>
                 </div>
                 
                 <div class="testimonials-grid">
                     <div class="testimonial-card">
                         <div class="testimonial-rating">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                             <i class="bi bi-star-fill"></i>
                         </div>
                         <p class="testimonial-text">
-                            "Service exceptionnel ! J'ai pu consulter un médecin rapidement sans me déplacer. 
-                            L'interface est intuitive et les médecins sont très professionnels."
+                            "Exceptional service! I was able to consult a doctor quickly without traveling. 
+                            The interface is intuitive and the doctors are very professional."
                         </p>
                         <div class="testimonial-author">
-                            <div class="author-avatar">
-                                <i class="bi bi-person"></i>
-                            </div>
+                            <div class="author-avatar"><i class="bi bi-person"></i></div>
                             <div>
                                 <h4>Marie K.</h4>
-                                <p>Patiente depuis 2023</p>
+                                <p>Patient since 2023</p>
                             </div>
                         </div>
                     </div>
                     
                     <div class="testimonial-card">
                         <div class="testimonial-rating">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                             <i class="bi bi-star-fill"></i>
                         </div>
                         <p class="testimonial-text">
-                            "Parfait pour les urgences non critiques ! J'ai évité des heures d'attente à l'hôpital. 
-                            Le médecin a été à l'écoute et a répondu à toutes mes questions."
+                            "Perfect for non-critical emergencies! I avoided hours of waiting at the hospital. 
+                            The doctor listened and answered all my questions."
                         </p>
                         <div class="testimonial-author">
-                            <div class="author-avatar">
-                                <i class="bi bi-person"></i>
-                            </div>
+                            <div class="author-avatar"><i class="bi bi-person"></i></div>
                             <div>
                                 <h4>Jean-Paul N.</h4>
-                                <p>Patient depuis 2022</p>
+                                <p>Patient since 2022</p>
                             </div>
                         </div>
                     </div>
                     
                     <div class="testimonial-card">
                         <div class="testimonial-rating">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                             <i class="bi bi-star-fill"></i>
                         </div>
                         <p class="testimonial-text">
-                            "Une révolution dans le domaine de la santé ! La prise de rendez-vous est simple 
-                            et les consultations vidéo sont de très bonne qualité."
+                            "A revolution in healthcare! Booking an appointment is simple 
+                            and video consultations are of very good quality."
                         </p>
                         <div class="testimonial-author">
-                            <div class="author-avatar">
-                                <i class="bi bi-person"></i>
-                            </div>
+                            <div class="author-avatar"><i class="bi bi-person"></i></div>
                             <div>
                                 <h4>Sophie M.</h4>
-                                <p>Patiente depuis 2024</p>
+                                <p>Patient since 2024</p>
                             </div>
                         </div>
                     </div>
@@ -455,64 +408,56 @@
             <div class="section-container">
                 <div class="contact-grid">
                     <div class="contact-info">
-                        <span class="section-label">Contactez-nous</span>
-                        <h2 class="section-title">Besoin d'aide ou d'informations ?</h2>
+                        <span class="section-label">Contact Us</span>
+                        <h2 class="section-title">Need help or information?</h2>
                         <p class="contact-description">
-                            Notre équipe est disponible pour répondre à toutes vos questions. 
-                            N'hésitez pas à nous contacter.
+                            Our team is available to answer all your questions. 
+                            Don't hesitate to reach out.
                         </p>
                         
                         <div class="contact-methods">
                             <div class="contact-method">
-                                <div class="method-icon">
-                                    <i class="bi bi-envelope"></i>
-                                </div>
+                                <div class="method-icon"><i class="bi bi-envelope"></i></div>
                                 <div>
                                     <h4>Email</h4>
                                     <p>contact@medi-connect.com</p>
                                 </div>
                             </div>
                             <div class="contact-method">
-                                <div class="method-icon">
-                                    <i class="bi bi-telephone"></i>
-                                </div>
+                                <div class="method-icon"><i class="bi bi-telephone"></i></div>
                                 <div>
-                                    <h4>Téléphone</h4>
+                                    <h4>Phone</h4>
                                     <p>+237 6XX XXX XXX</p>
                                 </div>
                             </div>
                             <div class="contact-method">
-                                <div class="method-icon">
-                                    <i class="bi bi-clock"></i>
-                                </div>
+                                <div class="method-icon"><i class="bi bi-clock"></i></div>
                                 <div>
-                                    <h4>Horaires</h4>
-                                    <p>24/7 - Disponible tous les jours</p>
+                                    <h4>Hours</h4>
+                                    <p>24/7 - Available every day</p>
                                 </div>
                             </div>
                         </div>
                         
                         <a href="contact.php" class="btn-link">
-                            Accéder au formulaire de contact
-                            <i class="bi bi-arrow-right"></i>
+                            Go to contact form <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
                     
                     <div class="contact-quick-form">
-                        <h3>Message rapide</h3>
+                        <h3>Quick message</h3>
                         <form class="quick-form" id="quick-contact-form">
                             <div class="form-group">
-                                <input type="text" placeholder="Votre nom" required>
+                                <input type="text" placeholder="Your name" required>
                             </div>
                             <div class="form-group">
-                                <input type="email" placeholder="Votre email" required>
+                                <input type="email" placeholder="Your email" required>
                             </div>
                             <div class="form-group">
-                                <textarea placeholder="Votre message" rows="4" required></textarea>
+                                <textarea placeholder="Your message" rows="4" required></textarea>
                             </div>
                             <button type="submit" class="btn-submit">
-                                Envoyer
-                                <i class="bi bi-send"></i>
+                                Send <i class="bi bi-send"></i>
                             </button>
                         </form>
                     </div>
@@ -524,16 +469,14 @@
         <section class="cta-section">
             <div class="section-container">
                 <div class="cta-content">
-                    <h2>Prêt à prendre soin de votre santé ?</h2>
-                    <p>Rejoignez des milliers de patients qui font confiance à Medi-Connect</p>
+                    <h2>Ready to take care of your health?</h2>
+                    <p>Join thousands of patients who trust Medi-Connect</p>
                     <div class="cta-actions">
                         <button class="btn-cta btn-cta-primary">
-                            Créer mon compte
-                            <i class="bi bi-arrow-right"></i>
+                            Create my account <i class="bi bi-arrow-right"></i>
                         </button>
                         <button class="btn-cta btn-cta-secondary">
-                            Prendre rendez-vous
-                            <i class="bi bi-calendar-check"></i>
+                            Book an appointment <i class="bi bi-calendar-check"></i>
                         </button>
                     </div>
                 </div>
@@ -551,7 +494,7 @@
                             </div>
                             <h3><span class="logo-main">Medi</span><span class="logo-accent">Connect</span></h3>
                         </div>
-                        <p>Votre santé, notre priorité. Accédez à des consultations médicales de qualité, où que vous soyez.</p>
+                        <p>Your health, our priority. Access quality medical consultations wherever you are.</p>
                         <div class="social-links">
                             <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
                             <a href="#" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
@@ -564,7 +507,7 @@
                         <h4>Navigation</h4>
                         <ul>
                             <li><a href="#services">Services</a></li>
-                            <li><a href="#apropos">À Propos</a></li>
+                            <li><a href="#about">About</a></li>
                             <li><a href="#contact">Contact</a></li>
                             <li><a href="#">FAQ</a></li>
                         </ul>
@@ -573,27 +516,27 @@
                     <div class="footer-links">
                         <h4>Services</h4>
                         <ul>
-                            <li><a href="services.php">Consultation en ligne</a></li>
-                            <li><a href="services.php">Prise de rendez-vous</a></li>
-                            <li><a href="services.php">Orientation médicale</a></li>
-                            <li><a href="#">Urgences</a></li>
+                            <li><a href="services.php">Online Consultation</a></li>
+                            <li><a href="services.php">Appointment Booking</a></li>
+                            <li><a href="services.php">Medical Orientation</a></li>
+                            <li><a href="#">Emergencies</a></li>
                         </ul>
                     </div>
                     
                     <div class="footer-links">
-                        <h4>Légal</h4>
+                        <h4>Legal</h4>
                         <ul>
-                            <li><a href="#">Conditions d'utilisation</a></li>
-                            <li><a href="#">Politique de confidentialité</a></li>
-                            <li><a href="#">Mentions légales</a></li>
-                            <li><a href="#">CGU</a></li>
+                            <li><a href="#">Terms of Use</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Legal Notice</a></li>
+                            <li><a href="#">GTC</a></li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="footer-bottom">
-                    <p>&copy; 2026 Medi-Connect. Tous droits réservés.</p>
-                    <p>Développé par <strong>BEKONO</strong> | Encadré par <strong>BEDING JUNIAS</strong></p>
+                    <p>&copy; 2026 Medi-Connect. All rights reserved.</p>
+                    <p>Developed by <strong>BEKONO</strong> | Supervised by <strong>BEDING JUNIAS</strong></p>
                 </div>
             </div>
         </footer>

@@ -1,12 +1,12 @@
 <?php
 /**
- * Page de connexion - VERSION DÉFINITIVEMENT CORRIGÉE
- * Application de Consultation Médicale
+ * Login Page - FINAL CORRECTED VERSION
+ * Medical Consultation Application
  */
 
 require_once 'config.php';
 
-// Si l'utilisateur est déjà connecté, le rediriger vers son dashboard
+// If the user is already logged in, redirect to their dashboard
 if (isLoggedIn()) {
     redirectToDashboard($_SESSION['user_role']);
 }
@@ -14,18 +14,18 @@ if (isLoggedIn()) {
 $error = '';
 $success = '';
 
-// Traitement du formulaire de connexion
+// Process the login form
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $identifiant = sanitize($_POST['identifiant'] ?? '');
-    $mot_de_passe = $_POST['mot_de_passe'] ?? '';
+    $identifier = sanitize($_POST['identifiant'] ?? '');
+    $password = $_POST['mot_de_passe'] ?? '';
     
-    if (empty($identifiant) || empty($mot_de_passe)) {
-        $error = "Veuillez remplir tous les champs.";
+    if (empty($identifier) || empty($password)) {
+        $error = "Please fill in all fields.";
     } else {
         try {
             $db = Database::getInstance()->getConnection();
             
-            // Rechercher l'utilisateur par email ou téléphone
+            // Search for the user by email or phone
             $stmt = $db->prepare("
                 SELECT id, nom, prenom, email, telephone, mot_de_passe, role, statut
                 FROM utilisateurs
@@ -33,29 +33,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 LIMIT 1
             ");
             
-            $stmt->execute([$identifiant, $identifiant]);
+            $stmt->execute([$identifier, $identifier]);
             $user = $stmt->fetch();
             
             if ($user) {
-                // Vérifier le statut du compte
+                // Check account status
                 if ($user['statut'] !== 'actif') {
-                    $error = "Votre compte est " . $user['statut'] . ". Veuillez contacter l'administrateur.";
+                    $error = "Your account is " . $user['statut'] . ". Please contact the administrator.";
                 } 
-                // Vérifier le mot de passe
-                elseif (password_verify($mot_de_passe, $user['mot_de_passe'])) {
+                // Verify the password
+                elseif (password_verify($password, $user['mot_de_passe'])) {
                     
-                    // Mettre à jour la dernière connexion
+                    // Update last login timestamp
                     $updateStmt = $db->prepare("UPDATE utilisateurs SET derniere_connexion = NOW() WHERE id = ?");
                     $updateStmt->execute([$user['id']]);
                     
-                    // Enregistrer les informations de session
+                    // Save session information
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['user_role'] = $user['role'];
                     $_SESSION['user_nom'] = $user['nom'];
                     $_SESSION['user_prenom'] = $user['prenom'];
                     $_SESSION['user_email'] = $user['email'];
                     
-                    // Récupérer l'ID spécifique selon le rôle
+                    // Retrieve the specific ID based on role
                     if ($user['role'] === 'patient') {
                         $roleStmt = $db->prepare("SELECT id FROM patients WHERE utilisateur_id = ?");
                         $roleStmt->execute([$user['id']]);
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         }
                     }
                     
-                    // Enregistrer l'activité - VERSION AVEC ? AU LIEU DE :param
+                    // Log the activity
                     try {
                         $logStmt = $db->prepare("
                             INSERT INTO logs_activite (utilisateur_id, action, description, adresse_ip, user_agent)
@@ -89,38 +89,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $logStmt->execute([
                             $user['id'],
                             'connexion',
-                            'Connexion réussie',
-                            $_SERVER['REMOTE_ADDR'] ?? 'Inconnue',
-                            $_SERVER['HTTP_USER_AGENT'] ?? 'Inconnu'
+                            'Successful login',
+                            $_SERVER['REMOTE_ADDR'] ?? 'Unknown',
+                            $_SERVER['HTTP_USER_AGENT'] ?? 'Unknown'
                         ]);
                     } catch(PDOException $e) {
-                        // Si le log échoue, on continue quand même
-                        error_log("Erreur log : " . $e->getMessage());
+                        // If logging fails, continue anyway
+                        error_log("Log error: " . $e->getMessage());
                     }
                     
-                    // Rediriger vers le dashboard approprié
+                    // Redirect to the appropriate dashboard
                     redirectToDashboard($user['role']);
                     
                 } else {
-                    $error = "Identifiant ou mot de passe incorrect.";
+                    $error = "Invalid identifier or password.";
                 }
             } else {
-                $error = "Identifiant ou mot de passe incorrect.";
+                $error = "Invalid identifier or password.";
             }
             
         } catch(PDOException $e) {
-            $error = "Une erreur est survenue. Veuillez réessayer.";
-            error_log("Erreur de connexion : " . $e->getMessage());
+            $error = "An error occurred. Please try again.";
+            error_log("Login error: " . $e->getMessage());
         }
     }
 }
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion - <?php echo SITE_NAME; ?></title>
+    <title>Login - <?php echo SITE_NAME; ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -286,8 +286,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="login-card">
                 <div class="login-header">
                     <i class="fas fa-user-md"></i>
-                    <h2>Connexion</h2>
-                    <p class="mb-0">Accédez à votre espace</p>
+                    <h2>Login</h2>
+                    <p class="mb-0">Access your account</p>
                 </div>
                 
                 <div class="login-body">
@@ -305,9 +305,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                     <?php endif; ?>
                     
-                    <?php if (isset($_GET['message']) && $_GET['message'] === 'deconnecte'): ?>
+                    <?php if (isset($_GET['message']) && $_GET['message'] === 'logged_out'): ?>
                         <div class="alert alert-info alert-dismissible fade show" role="alert">
-                            <i class="fas fa-info-circle"></i> Vous avez été déconnecté avec succès.
+                            <i class="fas fa-info-circle"></i> You have been successfully logged out.
                             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         </div>
                     <?php endif; ?>
@@ -315,27 +315,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <form method="POST" action="" id="loginForm">
                         <div class="mb-3">
                             <label for="identifiant" class="form-label">
-                                <i class="fas fa-envelope"></i> Email ou Téléphone
+                                <i class="fas fa-envelope"></i> Email or Phone
                             </label>
                             <input type="text" 
                                    class="form-control" 
                                    id="identifiant" 
                                    name="identifiant" 
-                                   placeholder="Entrez votre email ou numéro de téléphone"
+                                   placeholder="Enter your email or phone number"
                                    required
                                    value="<?php echo isset($_POST['identifiant']) ? htmlspecialchars($_POST['identifiant']) : ''; ?>">
                         </div>
                         
                         <div class="mb-3">
                             <label for="mot_de_passe" class="form-label">
-                                <i class="fas fa-lock"></i> Mot de passe
+                                <i class="fas fa-lock"></i> Password
                             </label>
                             <div class="position-relative">
                                 <input type="password" 
                                        class="form-control" 
                                        id="mot_de_passe" 
                                        name="mot_de_passe" 
-                                       placeholder="Entrez votre mot de passe"
+                                       placeholder="Enter your password"
                                        required>
                                 <i class="fas fa-eye password-toggle" id="togglePassword"></i>
                             </div>
@@ -344,29 +344,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="form-check mb-3">
                             <input class="form-check-input" type="checkbox" id="rememberMe">
                             <label class="form-check-label" for="rememberMe">
-                                Se souvenir de moi
+                                Remember me
                             </label>
                         </div>
                         
                         <button type="submit" class="btn btn-primary btn-login">
-                            <i class="fas fa-sign-in-alt"></i> Se connecter
+                            <i class="fas fa-sign-in-alt"></i> Sign In
                         </button>
                     </form>
                     
                     <div class="divider">
-                        <span>OU</span>
+                        <span>OR</span>
                     </div>
                     
                     <div class="register-link">
-                        <p class="mb-2">Vous n'avez pas de compte ?</p>
+                        <p class="mb-2">Don't have an account?</p>
                         <a href="register.php">
-                            <i class="fas fa-user-plus"></i> Créer un compte
+                            <i class="fas fa-user-plus"></i> Create an account
                         </a>
                     </div>
                     
                     <div class="text-center mt-3">
                         <a href="index.php" class="text-muted text-decoration-none">
-                            <i class="fas fa-home"></i> Retour à l'accueil
+                            <i class="fas fa-home"></i> Back to home
                         </a>
                     </div>
                 </div>
@@ -389,12 +389,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         // Form validation
         document.getElementById('loginForm').addEventListener('submit', function(e) {
-            const identifiant = document.getElementById('identifiant').value.trim();
-            const motDePasse = document.getElementById('mot_de_passe').value;
+            const identifier = document.getElementById('identifiant').value.trim();
+            const password = document.getElementById('mot_de_passe').value;
             
-            if (!identifiant || !motDePasse) {
+            if (!identifier || !password) {
                 e.preventDefault();
-                alert('Veuillez remplir tous les champs.');
+                alert('Please fill in all fields.');
             }
         });
     </script>

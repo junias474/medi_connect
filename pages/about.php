@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +7,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <title>À Propos - Medi-Connect</title>
+    <title>About Us - Medi-Connect</title>
 </head>
 <body>
     <!-- HEADER -->
     <header class="main-header">
         <div class="header-container">
-            <!-- Logo -->
             <div class="logo-section">
                 <div class="logo-icon">
                     <img src="design/assets/medi_connect_logo.png" alt="Medi-Connect Logo">
@@ -25,54 +23,45 @@
                 </h1>
             </div>
             
-            <!-- Recherche -->
             <div class="search-area">
                 <i class="bi bi-search search-icon"></i>
-                <input type="search" id="search_input" placeholder="Rechercher...">
+                <input type="search" id="search_input" placeholder="Search...">
             </div>
             
-            <!-- Navigation -->
             <nav class="main-nav">
-                <a href="index.php" class="nav-link">Accueil</a>
+                <a href="index.php" class="nav-link">Home</a>
                 <a href="services.php" class="nav-link">Services</a>
-                <a href="about.php" class="nav-link active">À Propos</a>
+                <a href="about.php" class="nav-link active">About</a>
                 <a href="contact.php" class="nav-link">Contact</a>
             </nav>
             
-            <!-- Boutons utilisateur -->
             <div class="user-actions">
                 <button class="btn btn-secondary" id="login_button">
                     <i class="bi bi-person"></i>
-                    Connexion
+                    Login
                 </button>
                 <button class="btn btn-primary" id="signup_button">
-                    Commencer
+                    Get Started
                     <i class="bi bi-arrow-right"></i>
                 </button>
             </div>
             
-            <!-- Menu mobile toggle -->
             <button class="mobile-menu-toggle" id="mobile-menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
         </div>
         
-        <!-- Navigation mobile -->
         <nav class="mobile-nav" id="mobile-nav">
-            <a href="index.php" class="mobile-nav-link">Accueil</a>
+            <a href="index.php" class="mobile-nav-link">Home</a>
             <a href="services.php" class="mobile-nav-link">Services</a>
-            <a href="about.php" class="mobile-nav-link active">À Propos</a>
+            <a href="about.php" class="mobile-nav-link active">About</a>
             <a href="contact.php" class="mobile-nav-link">Contact</a>
             <div class="mobile-nav-actions">
                 <button class="btn btn-secondary btn-block">
-                    <i class="bi bi-person"></i>
-                    Connexion
+                    <i class="bi bi-person"></i> Login
                 </button>
                 <button class="btn btn-primary btn-block">
-                    Commencer
-                    <i class="bi bi-arrow-right"></i>
+                    Get Started <i class="bi bi-arrow-right"></i>
                 </button>
             </div>
         </nav>
@@ -82,13 +71,13 @@
     <section class="page-hero">
         <div class="hero-content">
             <nav class="breadcrumb">
-                <a href="index.php">Accueil</a>
+                <a href="index.php">Home</a>
                 <i class="bi bi-chevron-right"></i>
-                <span>À Propos</span>
+                <span>About</span>
             </nav>
-            <h1 class="page-title">Notre Mission</h1>
+            <h1 class="page-title">Our Mission</h1>
             <p class="page-description">
-                Rendre les soins de santé accessibles à tous, où qu'ils soient
+                Making healthcare accessible to everyone, wherever they are
             </p>
         </div>
         <div class="hero-decoration">
@@ -97,28 +86,27 @@
         </div>
     </section>
 
-    <!-- NOTRE HISTOIRE -->
+    <!-- OUR STORY -->
     <section class="our-story">
         <div class="container">
             <div class="story-grid">
                 <div class="story-content">
-                    <span class="section-label">Notre Histoire</span>
-                    <h2>Comment Medi-Connect est né</h2>
+                    <span class="section-label">Our Story</span>
+                    <h2>How Medi-Connect was born</h2>
                     <p class="story-text">
-                        Medi-Connect est né en <strong>2020</strong> d'une vision simple mais puissante : 
-                        permettre à chacun d'accéder facilement à des soins de santé de qualité, 
-                        indépendamment de sa localisation géographique.
+                        Medi-Connect was born in <strong>2020</strong> from a simple but powerful vision: 
+                        to give everyone easy access to quality healthcare, 
+                        regardless of their geographic location.
                     </p>
                     <p class="story-text">
-                        Face au constat que de nombreuses personnes rencontrent des difficultés pour 
-                        consulter rapidement un médecin, que ce soit en raison de l'éloignement des centres 
-                        de santé, des files d'attente interminables ou du manque de disponibilité des 
-                        professionnels de santé, nous avons décidé de créer une solution innovante.
+                        Faced with the reality that many people struggle to quickly see a doctor — 
+                        whether due to distance from healthcare facilities, endless waiting lines, 
+                        or limited availability of health professionals — we decided to create an innovative solution.
                     </p>
                     <p class="story-text">
-                        Aujourd'hui, Medi-Connect connecte des <strong>milliers de patients</strong> avec 
-                        plus de <strong>150 médecins qualifiés</strong>, offrant des consultations médicales 
-                        en ligne de qualité, accessibles 24 heures sur 24, 7 jours sur 7.
+                        Today, Medi-Connect connects <strong>thousands of patients</strong> with 
+                        more than <strong>150 qualified doctors</strong>, offering high-quality online medical 
+                        consultations, available 24 hours a day, 7 days a week.
                     </p>
                 </div>
                 
@@ -126,8 +114,8 @@
                     <div class="story-image-card">
                         <div class="year-badge">2020</div>
                         <i class="bi bi-calendar-event"></i>
-                        <h3>Année de création</h3>
-                        <p>Le début de notre aventure</p>
+                        <h3>Year Founded</h3>
+                        <p>The beginning of our journey</p>
                     </div>
                     <div class="story-stats">
                         <div class="story-stat">
@@ -136,7 +124,7 @@
                         </div>
                         <div class="story-stat">
                             <h4>150+</h4>
-                            <p>Médecins</p>
+                            <p>Doctors</p>
                         </div>
                     </div>
                 </div>
@@ -144,23 +132,23 @@
         </div>
     </section>
 
-    <!-- NOTRE MISSION -->
+    <!-- OUR MISSION -->
     <section class="our-mission">
         <div class="container">
             <div class="section-header">
-                <span class="section-label">Notre Mission</span>
-                <h2>Ce qui nous anime au quotidien</h2>
+                <span class="section-label">Our Mission</span>
+                <h2>What drives us every day</h2>
             </div>
             
             <div class="mission-content">
                 <div class="mission-main">
                     <i class="bi bi-bullseye"></i>
-                    <h3>Démocratiser l'accès aux soins de santé</h3>
+                    <h3>Democratizing access to healthcare</h3>
                     <p>
-                        Notre mission est de rendre les consultations médicales accessibles à tous, 
-                        en éliminant les barrières géographiques et temporelles. Nous croyons fermement 
-                        que chaque personne, où qu'elle se trouve, mérite un accès rapide et facile à 
-                        des professionnels de santé qualifiés.
+                        Our mission is to make medical consultations accessible to all, 
+                        by eliminating geographic and time barriers. We firmly believe 
+                        that every person, wherever they are, deserves quick and easy access to 
+                        qualified health professionals.
                     </p>
                 </div>
                 
@@ -169,16 +157,16 @@
                         <div class="pillar-icon">
                             <i class="bi bi-people-fill"></i>
                         </div>
-                        <h4>Accessibilité</h4>
-                        <p>Des soins de santé pour tous, sans discrimination ni obstacle géographique</p>
+                        <h4>Accessibility</h4>
+                        <p>Healthcare for everyone, without discrimination or geographic barriers</p>
                     </div>
                     
                     <div class="pillar-card">
                         <div class="pillar-icon">
                             <i class="bi bi-award-fill"></i>
                         </div>
-                        <h4>Qualité</h4>
-                        <p>Des médecins certifiés et expérimentés pour garantir des consultations de haut niveau</p>
+                        <h4>Quality</h4>
+                        <p>Certified and experienced doctors to guarantee high-level consultations</p>
                     </div>
                     
                     <div class="pillar-card">
@@ -186,187 +174,162 @@
                             <i class="bi bi-lightning-fill"></i>
                         </div>
                         <h4>Innovation</h4>
-                        <p>Utilisation des technologies modernes pour améliorer l'expérience de santé</p>
+                        <p>Using modern technologies to improve the healthcare experience</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- NOS VALEURS -->
+    <!-- OUR VALUES -->
     <section class="our-values">
         <div class="container">
             <div class="section-header">
-                <span class="section-label">Nos Valeurs</span>
-                <h2>Les principes qui nous guident</h2>
+                <span class="section-label">Our Values</span>
+                <h2>The principles that guide us</h2>
             </div>
             
             <div class="values-grid">
                 <div class="value-card">
                     <div class="value-number">01</div>
-                    <div class="value-icon">
-                        <i class="bi bi-shield-check"></i>
-                    </div>
-                    <h3>Sécurité & Confidentialité</h3>
+                    <div class="value-icon"><i class="bi bi-shield-check"></i></div>
+                    <h3>Security & Privacy</h3>
                     <p>
-                        La protection de vos données personnelles et médicales est notre priorité absolue. 
-                        Nous utilisons les protocoles de sécurité les plus avancés pour garantir la 
-                        confidentialité de vos informations.
+                        Protecting your personal and medical data is our absolute priority. 
+                        We use the most advanced security protocols to guarantee the 
+                        confidentiality of your information.
                     </p>
                 </div>
                 
                 <div class="value-card">
                     <div class="value-number">02</div>
-                    <div class="value-icon">
-                        <i class="bi bi-heart-pulse"></i>
-                    </div>
-                    <h3>Bienveillance</h3>
+                    <div class="value-icon"><i class="bi bi-heart-pulse"></i></div>
+                    <h3>Compassion</h3>
                     <p>
-                        Nous traitons chaque patient avec empathie, respect et attention. Votre bien-être 
-                        est au cœur de nos préoccupations, et nous nous engageons à vous offrir une 
-                        expérience humaine et chaleureuse.
+                        We treat every patient with empathy, respect and attention. Your well-being 
+                        is at the heart of our concerns, and we are committed to offering you a 
+                        human and caring experience.
                     </p>
                 </div>
                 
                 <div class="value-card">
                     <div class="value-number">03</div>
-                    <div class="value-icon">
-                        <i class="bi bi-graph-up-arrow"></i>
-                    </div>
+                    <div class="value-icon"><i class="bi bi-graph-up-arrow"></i></div>
                     <h3>Excellence</h3>
                     <p>
-                        Nous ne cessons d'améliorer nos services pour vous offrir la meilleure expérience 
-                        possible. Formation continue de nos médecins, mise à jour technologique et écoute 
-                        de vos retours sont nos maîtres-mots.
+                        We continuously improve our services to offer you the best possible experience. 
+                        Ongoing doctor training, technology updates and listening to your 
+                        feedback are our guiding principles.
                     </p>
                 </div>
                 
                 <div class="value-card">
                     <div class="value-number">04</div>
-                    <div class="value-icon">
-                        <i class="bi bi-people"></i>
-                    </div>
+                    <div class="value-icon"><i class="bi bi-people"></i></div>
                     <h3>Inclusion</h3>
                     <p>
-                        Nous croyons en un accès équitable aux soins pour tous, sans distinction d'âge, 
-                        de genre, d'origine ou de statut socio-économique. La santé est un droit universel.
+                        We believe in equitable access to care for all, regardless of age, 
+                        gender, background or socioeconomic status. Health is a universal right.
                     </p>
                 </div>
                 
                 <div class="value-card">
                     <div class="value-number">05</div>
-                    <div class="value-icon">
-                        <i class="bi bi-lightbulb"></i>
-                    </div>
-                    <h3>Innovation Continue</h3>
+                    <div class="value-icon"><i class="bi bi-lightbulb"></i></div>
+                    <h3>Continuous Innovation</h3>
                     <p>
-                        Nous investissons constamment dans les nouvelles technologies pour améliorer 
-                        l'accessibilité, la qualité et l'efficacité de nos services de télémédecine.
+                        We constantly invest in new technologies to improve 
+                        the accessibility, quality and efficiency of our telemedicine services.
                     </p>
                 </div>
                 
                 <div class="value-card">
                     <div class="value-number">06</div>
-                    <div class="value-icon">
-                        <i class="bi bi-hand-thumbs-up"></i>
-                    </div>
-                    <h3>Transparence</h3>
+                    <div class="value-icon"><i class="bi bi-hand-thumbs-up"></i></div>
+                    <h3>Transparency</h3>
                     <p>
-                        Nous croyons en une communication claire et honnête avec nos patients et nos 
-                        partenaires. Pas de frais cachés, pas de promesses exagérées, juste la vérité.
+                        We believe in clear and honest communication with our patients and 
+                        partners. No hidden fees, no exaggerated promises — just the truth.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- NOTRE ÉQUIPE -->
+    <!-- OUR TEAM -->
     <section class="our-team">
         <div class="container">
             <div class="section-header">
-                <span class="section-label">Notre Équipe</span>
-                <h2>Les personnes derrière Medi-Connect</h2>
-                <p>Une équipe passionnée et dévouée à votre santé</p>
+                <span class="section-label">Our Team</span>
+                <h2>The people behind Medi-Connect</h2>
+                <p>A passionate team dedicated to your health</p>
             </div>
             
             <div class="team-intro">
                 <p>
-                    Medi-Connect c'est avant tout une équipe de passionnés : développeurs, médecins, 
-                    designers et experts en santé numérique qui travaillent ensemble pour créer la 
-                    meilleure expérience de télémédecine possible.
+                    Medi-Connect is above all a team of passionate people: developers, doctors, 
+                    designers and digital health experts who work together to create the 
+                    best telemedicine experience possible.
                 </p>
             </div>
             
             <div class="team-stats-grid">
                 <div class="team-stat-card">
-                    <div class="stat-icon">
-                        <i class="bi bi-person-badge"></i>
-                    </div>
+                    <div class="stat-icon"><i class="bi bi-person-badge"></i></div>
                     <h3>150+</h3>
-                    <p>Médecins Certifiés</p>
+                    <p>Certified Doctors</p>
                 </div>
-                
                 <div class="team-stat-card">
-                    <div class="stat-icon">
-                        <i class="bi bi-laptop"></i>
-                    </div>
+                    <div class="stat-icon"><i class="bi bi-laptop"></i></div>
                     <h3>20+</h3>
-                    <p>Experts Tech</p>
+                    <p>Tech Experts</p>
                 </div>
-                
                 <div class="team-stat-card">
-                    <div class="stat-icon">
-                        <i class="bi bi-headset"></i>
-                    </div>
+                    <div class="stat-icon"><i class="bi bi-headset"></i></div>
                     <h3>15+</h3>
-                    <p>Support Client</p>
+                    <p>Customer Support</p>
                 </div>
-                
                 <div class="team-stat-card">
-                    <div class="stat-icon">
-                        <i class="bi bi-globe"></i>
-                    </div>
+                    <div class="stat-icon"><i class="bi bi-globe"></i></div>
                     <h3>5</h3>
-                    <p>Pays Couverts</p>
+                    <p>Countries Covered</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- NOTRE IMPACT -->
+    <!-- OUR IMPACT -->
     <section class="our-impact">
         <div class="container">
             <div class="impact-grid">
                 <div class="impact-content">
-                    <span class="section-label">Notre Impact</span>
-                    <h2>Les chiffres qui parlent</h2>
+                    <span class="section-label">Our Impact</span>
+                    <h2>The numbers that speak</h2>
                     <p class="impact-intro">
-                        Depuis notre création, nous avons eu un impact significatif sur l'accès aux soins 
-                        de santé dans notre région. Voici quelques chiffres qui témoignent de notre engagement.
+                        Since our founding, we have had a significant impact on access to healthcare 
+                        in our region. Here are some figures that reflect our commitment.
                     </p>
                     
                     <div class="impact-highlights">
                         <div class="highlight-item">
                             <i class="bi bi-check-circle-fill"></i>
                             <div>
-                                <h4>98% de satisfaction</h4>
-                                <p>Nos patients sont satisfaits de nos services</p>
+                                <h4>98% satisfaction rate</h4>
+                                <p>Our patients are satisfied with our services</p>
                             </div>
                         </div>
-                        
                         <div class="highlight-item">
                             <i class="bi bi-check-circle-fill"></i>
                             <div>
-                                <h4>Temps d'attente réduit</h4>
-                                <p>Consultation en moins de 15 minutes en moyenne</p>
+                                <h4>Reduced waiting time</h4>
+                                <p>Consultation in less than 15 minutes on average</p>
                             </div>
                         </div>
-                        
                         <div class="highlight-item">
                             <i class="bi bi-check-circle-fill"></i>
                             <div>
-                                <h4>Accessibilité 24/7</h4>
-                                <p>Des médecins disponibles à toute heure</p>
+                                <h4>24/7 Accessibility</h4>
+                                <p>Doctors available at any time</p>
                             </div>
                         </div>
                     </div>
@@ -375,18 +338,16 @@
                 <div class="impact-numbers">
                     <div class="number-card large">
                         <div class="number-value" data-target="10000">0</div>
-                        <p>Consultations réalisées</p>
+                        <p>Consultations completed</p>
                     </div>
-                    
                     <div class="number-cards-row">
                         <div class="number-card">
                             <div class="number-value" data-target="5000">0</div>
-                            <p>Patients actifs</p>
+                            <p>Active patients</p>
                         </div>
-                        
                         <div class="number-card">
                             <div class="number-value" data-target="150">0</div>
-                            <p>Médecins partenaires</p>
+                            <p>Partner doctors</p>
                         </div>
                     </div>
                 </div>
@@ -394,7 +355,7 @@
         </div>
     </section>
 
-    <!-- NOTRE ENGAGEMENT -->
+    <!-- OUR COMMITMENT -->
     <section class="our-commitment">
         <div class="container">
             <div class="commitment-card">
@@ -402,19 +363,19 @@
                     <i class="bi bi-bookmark-heart-fill"></i>
                 </div>
                 <div class="commitment-content">
-                    <h2>Notre engagement envers vous</h2>
+                    <h2>Our commitment to you</h2>
                     <p>
-                        Chez Medi-Connect, nous nous engageons à fournir des services de télémédecine 
-                        de la plus haute qualité. Chaque médecin de notre plateforme est rigoureusement 
-                        sélectionné et vérifié pour garantir votre sécurité et votre satisfaction.
+                        At Medi-Connect, we are committed to providing the highest quality telemedicine services. 
+                        Every doctor on our platform is rigorously selected and verified to guarantee 
+                        your safety and satisfaction.
                     </p>
                     <p>
-                        Nous investissons continuellement dans l'amélioration de notre technologie, 
-                        la formation de nos équipes et l'écoute de vos retours pour vous offrir une 
-                        expérience exceptionnelle à chaque consultation.
+                        We continuously invest in improving our technology, 
+                        training our teams and listening to your feedback to offer you an 
+                        exceptional experience at every consultation.
                     </p>
                     <button class="btn-commitment">
-                        Découvrir nos services
+                        Discover our services
                         <i class="bi bi-arrow-right"></i>
                     </button>
                 </div>
@@ -426,16 +387,14 @@
     <section class="cta-section">
         <div class="container">
             <div class="cta-content">
-                <h2>Rejoignez des milliers de patients satisfaits</h2>
-                <p>Commencez votre parcours de santé avec Medi-Connect dès aujourd'hui</p>
+                <h2>Join thousands of satisfied patients</h2>
+                <p>Start your health journey with Medi-Connect today</p>
                 <div class="cta-buttons">
                     <button class="btn-cta primary">
-                        Créer mon compte
-                        <i class="bi bi-arrow-right"></i>
+                        Create my account <i class="bi bi-arrow-right"></i>
                     </button>
                     <a href="contact.php" class="btn-cta secondary">
-                        Nous contacter
-                        <i class="bi bi-envelope"></i>
+                        Contact us <i class="bi bi-envelope"></i>
                     </a>
                 </div>
             </div>
@@ -453,7 +412,7 @@
                         </div>
                         <h3><span class="logo-main">Medi</span><span class="logo-accent">Connect</span></h3>
                     </div>
-                    <p>Votre santé, notre priorité. Accédez à des consultations médicales de qualité, où que vous soyez.</p>
+                    <p>Your health, our priority. Access quality medical consultations wherever you are.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
                         <a href="#" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
@@ -465,9 +424,9 @@
                 <div class="footer-links">
                     <h4>Navigation</h4>
                     <ul>
-                        <li><a href="index.php">Accueil</a></li>
+                        <li><a href="index.php">Home</a></li>
                         <li><a href="services.php">Services</a></li>
-                        <li><a href="about.php">À Propos</a></li>
+                        <li><a href="about.php">About</a></li>
                         <li><a href="contact.php">Contact</a></li>
                     </ul>
                 </div>
@@ -475,27 +434,27 @@
                 <div class="footer-links">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="services.php#consultation">Consultation en ligne</a></li>
-                        <li><a href="services.php#rdv">Prise de rendez-vous</a></li>
-                        <li><a href="services.php#orientation">Orientation médicale</a></li>
-                        <li><a href="#">Urgences</a></li>
+                        <li><a href="services.php#consultation">Online Consultation</a></li>
+                        <li><a href="services.php#rdv">Appointment Booking</a></li>
+                        <li><a href="services.php#orientation">Medical Orientation</a></li>
+                        <li><a href="#">Emergencies</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-links">
-                    <h4>Légal</h4>
+                    <h4>Legal</h4>
                     <ul>
-                        <li><a href="#">Conditions d'utilisation</a></li>
-                        <li><a href="#">Politique de confidentialité</a></li>
-                        <li><a href="#">Mentions légales</a></li>
-                        <li><a href="#">CGU</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Legal Notice</a></li>
+                        <li><a href="#">GTC</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2026 Medi-Connect. Tous droits réservés.</p>
-                <p>Développé par <strong>BEKONO</strong> | Encadré par <strong>BEDING JUNIAS</strong></p>
+                <p>&copy; 2026 Medi-Connect. All rights reserved.</p>
+                <p>Developed by <strong>BEKONO</strong> | Supervised by <strong>BEDING JUNIAS</strong></p>
             </div>
         </div>
     </footer>

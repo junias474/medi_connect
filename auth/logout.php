@@ -1,35 +1,34 @@
 <?php
 /**
- * Page de déconnexion
- * Application de Consultation Médicale
+ * Logout Page
+ * Medical Consultation Application
  */
-
 require_once 'config.php';
 
-// Enregistrer l'activité de déconnexion si l'utilisateur est connecté
+// Log the logout activity if the user is connected
 if (isset($_SESSION['user_id'])) {
     try {
         $db = Database::getInstance()->getConnection();
         
         $stmt = $db->prepare("
             INSERT INTO logs_activite (utilisateur_id, action, description, adresse_ip, user_agent)
-            VALUES (:user_id, 'deconnexion', 'Déconnexion', :ip, :user_agent)
+            VALUES (:user_id, 'deconnexion', 'Logout', :ip, :user_agent)
         ");
         
         $stmt->execute([
             ':user_id' => $_SESSION['user_id'],
-            ':ip' => $_SERVER['REMOTE_ADDR'] ?? 'Inconnue',
-            ':user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'Inconnu'
+            ':ip' => $_SERVER['REMOTE_ADDR'] ?? 'Unknown',
+            ':user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'Unknown'
         ]);
     } catch(PDOException $e) {
-        error_log("Erreur lors de l'enregistrement de la déconnexion : " . $e->getMessage());
+        error_log("Error logging logout: " . $e->getMessage());
     }
 }
 
-// Détruire toutes les variables de session
+// Destroy all session variables
 $_SESSION = array();
 
-// Détruire le cookie de session si il existe
+// Destroy the session cookie if it exists
 if (ini_get("session.use_cookies")) {
     $params = session_get_cookie_params();
     setcookie(session_name(), '', time() - 42000,
@@ -38,10 +37,10 @@ if (ini_get("session.use_cookies")) {
     );
 }
 
-// Détruire la session
+// Destroy the session
 session_destroy();
 
-// Rediriger vers la page de connexion avec un message
-header("Location: login.php?message=deconnecte");
+// Redirect to login page with a message
+header("Location: login.php?message=logged_out");
 exit();
 ?>

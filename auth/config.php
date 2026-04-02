@@ -84,10 +84,10 @@ function redirectToDashboard($role) {
             header("Location: ../pages/medecin/index.php");
             break;
         case 'administrateur':
-            header("Location: dashboard/admin/index.php");
+            header("Location: ../admin/index.php");
             break;
         default:
-            header("Location: index.php");
+            header("Location: ../index.php");
     }
     exit();
 }
