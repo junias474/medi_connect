@@ -415,7 +415,7 @@ try {
     </nav>
 
     <div class="sidebar-footer">
-        <a href="../../logout.php"><i class="bi bi-box-arrow-left"></i> Déconnexion</a>
+        <a href="../auth/logout.php"><i class="bi bi-box-arrow-left"></i> Déconnexion</a>
     </div>
 </aside>
 

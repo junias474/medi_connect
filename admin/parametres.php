@@ -119,7 +119,7 @@ try {
         <a href="logs.php"><i class="bi bi-journal-text"></i> Logs activité</a>
         <a href="parametres.php" class="active"><i class="bi bi-gear"></i> Paramètres</a>
     </nav>
-    <div class="sidebar-footer"><a href="../../logout.php"><i class="bi bi-box-arrow-left"></i> Déconnexion</a></div>
+    <div class="sidebar-footer"><a href="../auth/logout.php"><i class="bi bi-box-arrow-left"></i> Déconnexion</a></div>
 </aside>
 <div class="main-content">
     <div class="topbar"><div><h2>Paramètres système</h2><p>Configuration de l'application</p></div></div>

@@ -50,7 +50,7 @@ $SIDEBAR = <<<HTML
         <a href="logs.php"><i class="bi bi-journal-text"></i> Logs activité</a>
         <a href="parametres.php"><i class="bi bi-gear"></i> Paramètres</a>
     </nav>
-    <div class="sidebar-footer"><a href="../../logout.php"><i class="bi bi-box-arrow-left"></i> Déconnexion</a></div>
+    <div class="sidebar-footer"><a href="../auth/logout.php"><i class="bi bi-box-arrow-left"></i> Déconnexion</a></div>
 </aside>
 HTML;
 ?>

@@ -368,7 +368,7 @@ try {
         </div>
         
         <div class="sidebar-footer">
-            <a href="../../logout.php" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 10px;">
+            <a href="../../auth/logout.php" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 10px;">
                 <i class="fas fa-sign-out-alt"></i>
                 <span>Logout</span>
             </a>

@@ -186,7 +186,7 @@ body{font-family:'Segoe UI',sans-serif;background:#f5f7fa;}
     <a href="profil.php"><i class="fas fa-user-cog"></i><span>My Profile</span></a>
   </div>
   <div class="sidebar-footer">
-    <a href="../../logout.php" style="color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px;">
+    <a href="../../auth/logout.php" style="color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px;">
       <i class="fas fa-sign-out-alt"></i><span>Logout</span>
     </a>
   </div>

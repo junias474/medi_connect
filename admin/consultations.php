@@ -108,7 +108,7 @@ try {
         <a href="logs.php"><i class="bi bi-journal-text"></i> Logs activité</a>
         <a href="parametres.php"><i class="bi bi-gear"></i> Paramètres</a>
     </nav>
-    <div class="sidebar-footer"><a href="../../logout.php"><i class="bi bi-box-arrow-left"></i> Déconnexion</a></div>
+    <div class="sidebar-footer"><a href="../auth/logout.php"><i class="bi bi-box-arrow-left"></i> Déconnexion</a></div>
 </aside>
 <div class="main-content">
     <div class="topbar"><div><h2>Consultations</h2><p><?php echo count($consultations); ?> trouvée(s)</p></div></div>
